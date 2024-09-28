@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boycotting For Gaza</title>
+    <script src="https://unpkg.com/htmx.org"></script>
+</head>
+<style>
+    
+    .alternatives {
+        width: 65vw;
+        margin: auto;
+        margin-top: 150px;
+        margin-bottom: 200px;
+    }
+    .alternatives .title {
+        margin-bottom: 40px;
+        display: block;
+        width:  auto;
+        text-align: center;
+    }
+    .alternatives .title h1 {
+        font-size: 26px;
+        font-weight: bold;
+        line-height: 1.6;
+        margin: auto;
+        display: block;
+        color:white;
+        transition: ease-in-out 0.3s all;
+    }
+    .alternatives .title img {
+        width: 35px;
+        transition: ease-in-out 0.3s all;
+    }
+    .alternatives .title:hover h1 {
+        color: #ffffffbc;
+    }
+    .alternatives .title:hover img {
+        filter: opacity(75%);
+    }
+    .alternatives .items {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        align-items: center;
+    }
+    .alternatives .items .item {
+        padding: 30px;
+        border-radius: 5px;
+        transition: ease-in-out 0.3s all;
+    }
+    .alternatives .items .item:hover {
+        background-color: #ffffff21;
+    }
+    .alternatives .items .item img {
+        width: 100%;
+    }
+
+
+
+@media screen and (min-width: 1400px){
+    .alternatives {
+        width: 1000px;
+    }
+}
+
+@media screen and (max-width: 1400px){
+    .alternatives {
+        width: 75vw;
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .alternatives {
+        width: 90vw;
+    }
+
+}
+
+@media screen and (max-width: 1000px){
+    .alternatives {
+        width: 95vw;
+    }
+
+
+}
+
+@media screen and (max-width: 900px){
+    .alternatives .items {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .alternatives .items .item {
+        padding: 10px;
+    }
+}
+
+</style>
+<body hx-target="this" hx-swap="outerHTML">
+<div id="forplaceholder">
+    {% include 'components/loader.html' %}
+    {% include 'components/header.html' %}
+
+    
+    <div class="alternatives">
+        <a onclick="openLoader()"  hx-push-url="true" hx-swap="outerHTML show:#body-div:top" hx-get="" class="title">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjU2IDI1NiI+PHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iTTIyOCA0OHYxNjBhMjAgMjAgMCAwIDEtMjAgMjBoLTY4YTEyIDEyIDAgMCAxIDAtMjRoNjRWNTJINTJ2ODhhMTIgMTIgMCAwIDEtMjQgMFY0OGEyMCAyMCAwIDAgMSAyMC0yMGgxNjBhMjAgMjAgMCAwIDEgMjAgMjBtLTk5LjUxIDEwMy41MWExMiAxMiAwIDAgMC0xNyAwTDY0IDE5OWwtMTUuNTEtMTUuNDlhMTIgMTIgMCAxIDAtMTcgMTdsMjQgMjRhMTIgMTIgMCAwIDAgMTcgMGw1Ni01NmExMiAxMiAwIDAgMCAwLTE3Ii8+PC9zdmc+"  alt="">
+            <h1 class="title">بدائل المقاطعة</h1>
+        </a>
+        <div class="items">
+            {% for boycott in alternatives %}
+                <a href="{{boycott.link}}" target="_blank">
+                    <div class="item">
+                        <img src="/media/{{boycott.logo}}/" alt="">
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    
+    {% include 'components/footer.html' %}
+</div>
+
+</body>
+</html>
+{% endblock content %}

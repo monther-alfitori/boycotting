@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boycotting For Gaza</title>
+    <script src="https://unpkg.com/htmx.org"></script>
+</head>
+<style>
+    
+    .phrases {
+        width: 65vw;
+        margin: auto;
+        margin-top: 150px;
+        margin-bottom: 200px;
+    }
+    .phrases .title {
+        margin-bottom: 40px;
+        display: block;
+        width:  auto;
+        text-align: center;
+    }
+    .phrases .title h1 {
+        font-size: 26px;
+        font-weight: bold;
+        line-height: 1.6;
+        margin: auto;
+        display: block;
+        color:white;
+        transition: ease-in-out 0.3s all;
+    }
+    .phrases .title img {
+        width: 35px;
+        transition: ease-in-out 0.3s all;
+    }
+    .phrases .title:hover h1 {
+        color: #ffffffbc;
+    }
+    .phrases .title:hover img {
+        filter: opacity(75%);
+    }
+    .phrases .items {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 10px;
+    }
+    .phrases .items .item {
+        transition: ease-in-out 0.3s all;
+        padding: 5px;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+    .phrases .items .item:hover {
+        background-color: #ffffff25;
+    }
+    .phrases .items .item h1 {
+        font-size: 15px;
+        font-weight: 400;
+        color: #ffffffbc;
+        text-align: right;
+        line-height: 1.3;
+    }
+
+    .phrases .items .item p {
+        font-size: 12px;
+        font-weight: 200;
+        color: #daa12e;
+        text-align: right;
+        margin-top: 5px;
+        line-height: 1.4;
+    }
+
+    /* Style for the copied text prompt */
+    #copyPrompt {
+        display: none; /* Initially hidden */
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #daa12e;
+        color: #ffffff;
+        padding: 15px 50px;
+        border-radius: 5px;
+        font-size: 18px;
+        z-index: 9999; /* Ensures it is on top */
+        text-align: center;
+    }
+
+
+
+@media screen and (min-width: 1400px){
+    .phrases {
+        width: 1000px;
+    }
+}
+
+@media screen and (max-width: 1400px){
+    .phrases {
+        width: 75vw;
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .phrases {
+        width: 90vw;
+    }
+
+}
+
+@media screen and (max-width: 1000px){
+    .phrases {
+        width: 95vw;
+    }
+
+
+}
+
+@media screen and (max-width: 900px){
+    .phrases .items {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+<body hx-target="this" hx-swap="outerHTML" id="body-div">
+<div id="forplaceholder">
+    {% include 'components/loader.html' %}
+    {% include 'components/header.html' %}
+
+    
+    <div class="phrases">
+        <a onclick="openLoader()"  hx-push-url="true" hx-swap="outerHTML show:#body-div:top" hx-get="" class="title">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0zIDNWMmExIDEgMCAwIDAtMSAxem0xNS4yOTMgMTEuMjkzbC0uOTExLS40MTJBMSAxIDAgMCAwIDE3LjU4NiAxNXpNMjEgMTdsLjcwNy43MDdhMSAxIDAgMCAwIDAtMS40MTR6bS00IDRsLS43MDcuNzA3YTEgMSAwIDAgMCAxLjQxNCAwem0tMi43MDctMi43MDdsLjcwNy0uNzA3YTEgMSAwIDAgMC0xLjEyLS4yMDR6TTExIDJIM3YyaDh6bTkgOWE5IDkgMCAwIDAtOS05djJhNyA3IDAgMCAxIDcgN3ptLS43OTYgMy43MDVBOSA5IDAgMCAwIDIwIDExaC0yYTcgNyAwIDAgMS0uNjE4IDIuODh6TTE3LjU4NiAxNWwyLjcwNyAyLjcwN2wxLjQxNC0xLjQxNEwxOSAxMy41ODZ6bTIuNzA3IDEuMjkzbC00IDRsMS40MTQgMS40MTRsNC00em0tMi41ODYgNEwxNSAxNy41ODZMMTMuNTg2IDE5bDIuNzA3IDIuNzA3ek0xMSAyMGE5IDkgMCAwIDAgMy43MDUtLjc5NmwtLjgyNC0xLjgyMkE3IDcgMCAwIDEgMTEgMTh6bS05LTlhOSA5IDAgMCAwIDkgOXYtMmE3IDcgMCAwIDEtNy03em0wLTh2OGgyVjN6Ii8+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iMiIgZmlsbD0iI2ZmZmZmZiIgdHJhbnNmb3JtPSJyb3RhdGUoLTE4MCAxMSAxMSkiLz48cGF0aCBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJtMyAzbDggOCIvPjwvZz48L3N2Zz4="  alt="">
+            <h1 class="title">مآثر وأقوال</h1>
+        </a>
+        <div class="items">
+            {% for phrase in phrases %}
+                <a onclick="CopyText(this)">
+                    <div class="item">
+                        <h1 class="phraseText">{{phrase.text}}</h1>
+                        <p class="author">{{phrase.author}}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Gray Prompt -->
+    <div id="copyPrompt">تم نسخ النص</div>
+    
+    {% include 'components/footer.html' %}
+</div>
+
+
+<script>
+    function CopyText(element) {
+    // Find the phraseText inside the clicked item
+    const phraseText = element.querySelector('.phraseText').innerText;
+
+    // Create a temporary textarea element to copy the text
+    const tempInput = document.createElement('textarea');
+    tempInput.value = phraseText;
+    document.body.appendChild(tempInput);
+
+    // Select the text and copy it
+    tempInput.select();
+    document.execCommand('copy');
+    
+    // Remove the temporary textarea element
+    document.body.removeChild(tempInput);
+
+    // Show the "تم نسخ النص" prompt
+    showCopyPrompt();
+}
+
+function showCopyPrompt() {
+    const prompt = document.getElementById('copyPrompt');
+    
+    // Make the prompt visible
+    prompt.style.display = 'block';
+
+    // After 2 seconds, hide the prompt
+    setTimeout(function() {
+        prompt.style.display = 'none';
+    }, 1000);
+}
+
+</script>
+</body>
+</html>
+{% endblock content %}

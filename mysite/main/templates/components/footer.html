@@ -1,0 +1,167 @@
+{% load static %}
+
+
+<style>
+        .footer {
+        width: 100%;
+        margin: auto;
+        margin-top: 50px;
+        background-color: #9393932b;
+    }
+    .footer .top {
+        width: 65vw;
+        margin: auto;
+        padding-top: 70px;
+        padding-bottom: 70px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+    }
+    .footer .top .col1 h1 {
+        font-size: 30px;
+        font-weight: bold;
+        text-align: right;
+        color:white;
+    }    
+    .footer .top .col1 p {
+        width: 80%;
+        font-size: 18px;
+        font-weight: 200;
+        text-align: right;
+        color:#ffffffbc;
+        margin-top: 15px;
+        margin-bottom: 50px;
+        line-height: 1.6;
+    }
+
+    .footer .top .col1 .links img {
+        width: 50px;
+        margin-left: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #daa12e;
+        transition: ease-in-out 0.3s all;
+    }
+    .footer .top .col1 .links img:hover {
+        background-color: #daa12eb4;
+    }
+
+    .footer .top .col2 {
+        margin-right: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        align-items: end;
+    }
+    .footer .top .col2 .right {
+        padding: 85px 20px 20px 20px;
+        border-radius: 10px;
+        background-color: #000;
+        text-align: center;
+        height: 250px;
+    }
+    .footer .top .col2 .left {
+        padding: 85px 20px 20px 20px;
+        border-radius: 10px;
+        background-color: #000;
+        text-align: center;
+        height: 250px;
+    }
+    .footer .top .col2 img {
+        width: 50px;
+    }
+    .footer .top .col2 h3 {
+        width: 100%;
+        font-size: 20px;
+        font-weight: 400;
+        color:#fff;
+        margin-top: 15px;
+        direction: ltr;
+    }
+
+
+
+    @media screen and (min-width: 1400px){
+    .footer .top {
+        width: 1000px;
+    }
+}
+
+@media screen and (max-width: 1400px){
+    .footer .top {
+        width: 75vw;
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .footer .top {
+        width: 90vw;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .footer .top {
+        width: 95vw;
+    }
+}
+
+@media screen and (max-width: 900px){
+    .footer .top {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer .top .col1 h1 {
+        text-align: center;
+    }
+    .footer .top .col1 p {
+        text-align: center;
+        margin: auto;
+        margin-top: 15px;
+    }
+    .footer .top .col1 .links {
+        margin-top: 40px;
+    }
+    .footer .top .col2 {
+        grid-template-columns: 1fr;
+        gap: 0;
+        width: 90%;
+        margin: auto;
+        margin-top: 40px;
+    }
+    .footer .top .col2 .left {
+        margin-top: 15px;
+    }
+}
+</style>
+
+<div class="footer">
+    <div class="top">
+        <div class="col1">
+            <h1>ابق على  اطلاع</h1>
+            <p>نسعى لدعم المجاهدين الأبرار وأهالينا المستضعفين في غزة وكل العالم الإسلامي، لا نريد أن نكون متفرجين، يمكننا أن نساهم ولو بالقليل بينما يحظى إخواننا بعظيم الأجر والثواب داخل الأنفاق وتحت أصوات القذائف والمتفرجات.</p>
+            <div class="links">
+                <a href=""><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik05LjYwMiAyMS4wMjZ2LTcuMjc0SDYuODE4YS41NDUuNTQ1IDAgMCAxLS41NDUtLjU0NVYxMC4zM2EuNTQ1LjU0NSAwIDAgMSAuNTQ1LS41NDVoMi43NzNWN2E0LjU0NyA0LjU0NyAwIDAgMSA0Ljg2LTQuOTg5aDIuMzJhLjU1Ni41NTYgMCAwIDEgLjU1Ny41NDZ2Mi40MzZhLjU1Ny41NTcgMCAwIDEtLjU1Ny41NDVoLTEuNDVjLTEuNTY2IDAtMS44NjcuNzQyLTEuODY3IDEuODMzdjIuNDEzaDMuNzIzYS41MzMuNTMzIDAgMCAxIC41NDYuNjAzbC0uMzM3IDIuODg4YS41NDUuNTQ1IDAgMCAxLS41NDUuNDc2aC0zLjM2NHY3LjI3NGEuOTYuOTYgMCAwIDEtLjk3NS45NzRoLTEuOTM3YS45Ni45NiAwIDAgMS0uOTYzLS45NzQiLz48L3N2Zz4=" alt=""></a>
+                <a href=""><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTYgMTYiPjxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik04IDUuNjdDNi43MSA1LjY3IDUuNjcgNi43MiA1LjY3IDhTNi43MiAxMC4zMyA4IDEwLjMzUzEwLjMzIDkuMjggMTAuMzMgOFM5LjI4IDUuNjcgOCA1LjY3TTE1IDhjMC0uOTcgMC0xLjkyLS4wNS0yLjg5Yy0uMDUtMS4xMi0uMzEtMi4xMi0xLjEzLTIuOTNjLS44Mi0uODItMS44MS0xLjA4LTIuOTMtMS4xM0M5LjkyIDEgOC45NyAxIDggMXMtMS45MiAwLTIuODkuMDVjLTEuMTIuMDUtMi4xMi4zMS0yLjkzIDEuMTNDMS4zNiAzIDEuMSAzLjk5IDEuMDUgNS4xMUMxIDYuMDggMSA3LjAzIDEgOHMwIDEuOTIuMDUgMi44OWMuMDUgMS4xMi4zMSAyLjEyIDEuMTMgMi45M2MuODIuODIgMS44MSAxLjA4IDIuOTMgMS4xM0M2LjA4IDE1IDcuMDMgMTUgOCAxNXMxLjkyIDAgMi44OS0uMDVjMS4xMi0uMDUgMi4xMi0uMzEgMi45My0xLjEzYy44Mi0uODIgMS4wOC0xLjgxIDEuMTMtMi45M2MuMDYtLjk2LjA1LTEuOTIuMDUtMi44OW0tNyAzLjU5Yy0xLjk5IDAtMy41OS0xLjYtMy41OS0zLjU5UzYuMDEgNC40MSA4IDQuNDFzMy41OSAxLjYgMy41OSAzLjU5cy0xLjYgMy41OS0zLjU5IDMuNTltMy43NC02LjQ5Yy0uNDYgMC0uODQtLjM3LS44NC0uODRzLjM3LS44NC44NC0uODRzLjg0LjM3Ljg0Ljg0YS44LjggMCAwIDEtLjI0LjU5YS44LjggMCAwIDEtLjU5LjI0WiIvPjwvc3ZnPg==" alt=""></a>
+                <a href=""><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHBhdGggZmlsbD0iIzAwMDAwMCIgZD0iTTM4OS4yIDQ4aDcwLjZMMzA1LjYgMjI0LjJMNDg3IDQ2NEgzNDVMMjMzLjcgMzE4LjZMMTA2LjUgNDY0SDM1LjhsMTY0LjktMTg4LjVMMjYuOCA0OGgxNDUuNmwxMDAuNSAxMzIuOXptLTI0LjggMzczLjhoMzkuMUwxNTEuMSA4OGgtNDJ6Ii8+PC9zdmc+" alt=""></a>
+                <a href=""><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik0yMC4zNTcgNy43NWEuNTM3LjUzNyAwIDAgMC0uNDk1LS41MTZhNC43IDQuNyAwIDAgMS0yLjQxNS0uOTM4YTQuODUgNC44NSAwIDAgMS0xLjg4Ny0zLjNhLjU0LjU0IDAgMCAwLS41MTctLjQ5NmgtMi4xMDhhLjUxNy41MTcgMCAwIDAtLjUxNy41Mjd2MTIuNTlhMi43OTQgMi43OTQgMCAwIDEtMi45NzQgMi43NjJhMi44MTUgMi44MTUgMCAwIDEtMi41MS0zLjcxMUEyLjgzNiAyLjgzNiAwIDAgMSA5LjkzIDEyLjc4YS41MDYuNTA2IDAgMCAwIC41NTgtLjUwNlY5LjgwN3MtLjg5Ni0uMDYzLTEuMjAyLS4wNjNhNS4yNyA1LjI3IDAgMCAwLTQuMTAxIDEuOTNhNS44IDUuOCAwIDAgMC0xLjM3IDIuNTJhNS44NiA1Ljg2IDAgMCAwIDIuMTQgNi4wNzJBNS45MyA1LjkzIDAgMCAwIDkuNTkxIDIxLjVxLjQ1MSAwIC44OTYtLjA2M0E1Ljk1IDUuOTUgMCAwIDAgMTMuOCAxOS43OGE1Ljg0IDUuODQgMCAwIDAgMS43NS00LjEzM1Y4LjcxYTcuODQgNy44NCAwIDAgMCA0LjIxOCAxLjYxM2EuNTE3LjUxNyAwIDAgMCAuNTQ4LS41MjdWNy43NTF6Ii8+PC9zdmc+" alt=""></a>
+            </div>
+        </div>
+        <div class="col2">
+            <a href="">
+                <div class="right">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2RhYTEyZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIGQ9Ik0zIDdhMiAyIDAgMCAxIDItMmgxNGEyIDIgMCAwIDEgMiAydjEwYTIgMiAwIDAgMS0yIDJINWEyIDIgMCAwIDEtMi0yeiIvPjxwYXRoIGQ9Im0zIDdsOSA2bDktNiIvPjwvZz48L3N2Zz4=" alt="">
+                    <h3>contact@Badeel.ly</h3>
+                </div>
+            </a>
+
+            <a href="">
+                <div class="left">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2RhYTEyZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik01IDRoNGwyIDVsLTIuNSAxLjVhMTEgMTEgMCAwIDAgNSA1TDE1IDEzbDUgMnY0YTIgMiAwIDAgMS0yIDJBMTYgMTYgMCAwIDEgMyA2YTIgMiAwIDAgMSAyLTIiLz48L3N2Zz4=" alt="">
+                    <h3>+218 918873365</h3>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</div>

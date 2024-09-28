@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boycotting For Gaza</title>
+    <script src="https://unpkg.com/htmx.org"></script>
+</head>
+<style>
+    
+    .articles {
+        width: 65vw;
+        margin: auto;
+        margin-top: 150px;
+        margin-bottom: 200px;
+    }
+    .articles .title {
+        margin-bottom: 40px;
+        display: block;
+        width:  auto;
+        text-align: center;
+    }
+    .articles .title h1 {
+        font-size: 26px;
+        font-weight: bold;
+        line-height: 1.6;
+        margin: auto;
+        display: block;
+        color:white;
+        transition: ease-in-out 0.3s all;
+    }
+    .articles .title img {
+        width: 35px;
+        transition: ease-in-out 0.3s all;
+    }
+    .articles .title:hover h1 {
+        color: #ffffffbc;
+    }
+    .articles .title:hover img {
+        filter: opacity(75%);
+    }
+    .articles .items {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 10px;
+    }
+    .articles .items .item {
+        transition: ease-in-out 0.3s all;
+        padding: 5px;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+    .articles .items .item:hover {
+        background-color: #ffffff25;
+    }
+    .articles .items .item h1 {
+        font-size: 15px;
+        font-weight: 400;
+        color: #ffffffbc;
+        text-align: right;
+        line-height: 1.3;
+    }
+    .articles .items .item h1 span {
+        color: #daa12e;
+    }
+    .articles .items .item p {
+        font-size: 12px;
+        font-weight: 200;
+        color: #ffffffa3;
+        text-align: right;
+        display: -webkit-box;
+        -webkit-line-clamp: 1; 
+        -webkit-box-orient: vertical; 
+        overflow: hidden;
+        margin-top: 5px;
+        line-height: 1.4;
+    }
+
+
+
+@media screen and (min-width: 1400px){
+    .articles {
+        width: 1000px;
+    }
+}
+
+@media screen and (max-width: 1400px){
+    .articles {
+        width: 75vw;
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .articles {
+        width: 90vw;
+    }
+
+}
+
+@media screen and (max-width: 1000px){
+    .articles {
+        width: 95vw;
+    }
+
+
+}
+
+@media screen and (max-width: 900px){
+    .articles .items {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+<body hx-target="this" hx-swap="outerHTML">
+<div id="forplaceholder">
+    {% include 'components/loader.html' %}
+    {% include 'components/header.html' %}
+
+    
+    <div class="articles">
+        <a onclick="openLoader()"  hx-push-url="true" hx-swap="outerHTML show:#body-div:top" hx-get="" class="title">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIGQ9Ik0zIDR2MTRhMiAyIDAgMCAwIDIgMmgxNGEyIDIgMCAwIDAgMi0yVjhoLTQiLz48cGF0aCBkPSJNMyA0aDE0djE0YTIgMiAwIDAgMCAyIDJ2ME0xMyA4SDdtNiA0SDkiLz48L2c+PC9zdmc+"  alt="">
+            <h1 class="title">المقالات والأخبار</h1>
+        </a>
+        <div class="items">
+            {% for article in articles %}
+                <a href="{{article.link}}" target="_blank">
+                    <div class="item">
+                        <h1><span>&#9679; </span>{{article.title}}</h1>
+                        <p class="created_at">منذ {{article.created_at|timesince}}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    {% include 'components/footer.html' %}
+</div>
+
+
+
+
+    <script>
+        // Define the function that processes the 'created_at' elements
+        function updateTimeElements() {
+        // Select all elements with the class 'created_at'
+        const timeElements = document.querySelectorAll('.created_at');
+        
+        timeElements.forEach(function(elem) {
+            // Get the current text content
+            let timeText = elem.textContent;
+        
+            // Replace the time units with their shorter forms
+            timeText = timeText.replace('minutes', 'دقيقة');
+            timeText = timeText.replace('minute', 'دقيقة'); // For singular
+            timeText = timeText.replace('hours', 'ساعة');
+            timeText = timeText.replace('hour', 'ساعة'); // For singular
+            timeText = timeText.replace('days', 'يوم');
+            timeText = timeText.replace('day', 'يوم'); // For singular
+            timeText = timeText.replace('weeks', 'أسبوع');
+            timeText = timeText.replace('week', 'أسبوع'); // For singular
+            // Only keep the first time unit (minutes, hours, days)
+            let firstUnit = timeText.split(',')[0].trim(); // Handle cases with multiple time units
+        
+            // Update the text content with the new shortened version
+            elem.textContent = firstUnit;
+        });
+        }
+    
+        // Call the function when the DOM content is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+        updateTimeElements();
+        });
+    
+        // Call the function after any HTMX request that affects the page
+        document.body.addEventListener('htmx:afterOnLoad', function() {
+        updateTimeElements();
+        });
+  </script>
+
+</body>
+</html>
+{% endblock content %}

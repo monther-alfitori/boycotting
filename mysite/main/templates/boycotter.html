@@ -1,0 +1,391 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>boycotters For Gaza</title>
+    <script src="https://unpkg.com/htmx.org"></script>
+</head>
+<style>
+    
+    .boycotters {
+        width: 65vw;
+        margin: auto;
+        margin-top: 150px;
+    }
+
+    .boycotters .items {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+    }
+    .boycotters .items .item {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 20px 0;
+        border-bottom: 0.1px solid #ffffff1c;
+        text-align: center;
+    }
+    .boycotters .items .item .right img {
+        width: 175px;
+        transition: ease-in-out 0.3s all;
+    }
+    .boycotters .items .item .right img:hover {
+        transform: scale(1.05);
+    }
+    .boycotters .items .item .left {
+        position: relative;
+    }
+    .boycotters .items .item .left h1 {
+        font-size: 22px;
+        font-weight: 600;
+        color: #fff;
+        text-align: center;
+        transition: ease-in-out 0.3s all;
+        margin-bottom: 10px;
+    }
+    .boycotters .items .item .left h1:hover {
+        color: #ffffffbc;
+    }
+    .boycotters .items .item .left p {
+        font-size: 18px;
+        font-weight: 200;
+        color: #ffffffbc;
+        margin-top: 5px;
+        text-align: center;
+        display: -webkit-box;
+        -webkit-line-clamp: 1; 
+        -webkit-box-orient: vertical; 
+        overflow: hidden;
+        line-height: 1.3;
+        transition: ease-in-out 0.3s all;
+        direction: ltr;
+        word-break: break-word;
+    }
+    .boycotters .items .item .left p:hover {
+        color: #daa12e;
+    }
+
+
+    .boycotters .items .item .left .links {
+        margin-top: 40px;
+    }
+    .boycotters .items .item .left .links img {
+        width: 40px;
+        margin: 10px;
+        filter: brightness(0) invert(1);
+        transition: ease-in-out 0.5s all;
+    }
+    .boycotters .items .item .left .links img:hover {
+        background-color: #98989832;
+        border-radius: 50%;
+        padding: 10px;
+    }
+
+
+    .boycotterShares {
+        width: 65vw;
+        margin: auto;
+        margin-top: 50px;
+        margin-bottom: 200px;
+        text-align: center;
+    }
+
+     .boycotterShares .social {
+        column-count: 3; 
+        column-gap: 20px;
+        margin: 0 auto;
+    }
+    .boycotterShares .social .post {
+        break-inside: avoid;
+        width: 100%;
+        background-color: white;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        cursor: pointer;
+        filter: opacity(90%) grayscale(20%);
+    }
+
+
+    .boycotterShares .social .post .instagram-media {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: auto !important;
+    }
+    .boycotterShares .social .post .embed {
+        width: 100%;
+        height: 100%;
+        min-height: 300px;
+        max-height: 550px;
+        margin: 10px 0;
+        border-radius: 10px;
+    }
+
+
+
+
+
+
+
+@media screen and (min-width: 1400px){
+    .boycotters {
+        width: 1000px;
+    }
+    .boycotterShares {
+        width: 1000px;
+    }
+}
+
+@media screen and (max-width: 1400px){
+    .boycotters {
+        width: 75vw;
+    }
+    .boycotterShares {
+        width: 75vw;
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .boycotters {
+        width: 90vw;
+    }
+    .boycotterShares {
+        width: 90vw;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .boycotters {
+        width: 95vw;
+    }
+    .boycotterShares {
+        width: 95vw;
+    }
+}
+
+@media screen and (max-width: 900px){
+    .boycotters {
+        margin-top: 100px;
+    }
+    .boycotters .items .item {
+        gap: 20px;
+        padding: 30px;
+        align-items: center;
+    }
+
+    .boycotterShares .social {
+        column-count: 1;
+    }
+    .boycotterShares .social .post .embed {
+        min-height: none;
+        max-height: none;
+    }
+}
+
+
+
+</style>
+<body>
+<div id="forplaceholder">
+    {% include 'components/loader.html' %}
+    {% include 'components/header.html' %}
+
+    
+    <div class="boycotters" >
+        <div class="items">
+            <div class="item">
+                <div class="right">
+                    <img src="/media/{{boycotter.logo}}/" alt="">
+                </div>
+                <div class="left">
+                    <h1>{{boycotter.name}}</h1>
+                    <a href="tel:{{boycotter.number}}" target="_blank"><p>{{boycotter.number}}</p></a>
+                    <a href="{{boycotter.location}}" target="_blank"><p class="location">{{boycotter.location}}</p></a>
+                    <div class="links">
+                        {% for link in boycotter.social_set.all %}
+                            {% if link.platform == 'Facebook' %}
+                            <a href="{{link.link}}" target="_blank"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik05LjYwMiAyMS4wMjZ2LTcuMjc0SDYuODE4YS41NDUuNTQ1IDAgMCAxLS41NDUtLjU0NVYxMC4zM2EuNTQ1LjU0NSAwIDAgMSAuNTQ1LS41NDVoMi43NzNWN2E0LjU0NyA0LjU0NyAwIDAgMSA0Ljg2LTQuOTg5aDIuMzJhLjU1Ni41NTYgMCAwIDEgLjU1Ny41NDZ2Mi40MzZhLjU1Ny41NTcgMCAwIDEtLjU1Ny41NDVoLTEuNDVjLTEuNTY2IDAtMS44NjcuNzQyLTEuODY3IDEuODMzdjIuNDEzaDMuNzIzYS41MzMuNTMzIDAgMCAxIC41NDYuNjAzbC0uMzM3IDIuODg4YS41NDUuNTQ1IDAgMCAxLS41NDUuNDc2aC0zLjM2NHY3LjI3NGEuOTYuOTYgMCAwIDEtLjk3NS45NzRoLTEuOTM3YS45Ni45NiAwIDAgMS0uOTYzLS45NzQiLz48L3N2Zz4=" alt=""></a>
+                            {% elif link.platform == 'Instagram' %}
+                            <a href="{{link.link}}" target="_blank"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTYgMTYiPjxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik04IDUuNjdDNi43MSA1LjY3IDUuNjcgNi43MiA1LjY3IDhTNi43MiAxMC4zMyA4IDEwLjMzUzEwLjMzIDkuMjggMTAuMzMgOFM5LjI4IDUuNjcgOCA1LjY3TTE1IDhjMC0uOTcgMC0xLjkyLS4wNS0yLjg5Yy0uMDUtMS4xMi0uMzEtMi4xMi0xLjEzLTIuOTNjLS44Mi0uODItMS44MS0xLjA4LTIuOTMtMS4xM0M5LjkyIDEgOC45NyAxIDggMXMtMS45MiAwLTIuODkuMDVjLTEuMTIuMDUtMi4xMi4zMS0yLjkzIDEuMTNDMS4zNiAzIDEuMSAzLjk5IDEuMDUgNS4xMUMxIDYuMDggMSA3LjAzIDEgOHMwIDEuOTIuMDUgMi44OWMuMDUgMS4xMi4zMSAyLjEyIDEuMTMgMi45M2MuODIuODIgMS44MSAxLjA4IDIuOTMgMS4xM0M2LjA4IDE1IDcuMDMgMTUgOCAxNXMxLjkyIDAgMi44OS0uMDVjMS4xMi0uMDUgMi4xMi0uMzEgMi45My0xLjEzYy44Mi0uODIgMS4wOC0xLjgxIDEuMTMtMi45M2MuMDYtLjk2LjA1LTEuOTIuMDUtMi44OW0tNyAzLjU5Yy0xLjk5IDAtMy41OS0xLjYtMy41OS0zLjU5UzYuMDEgNC40MSA4IDQuNDFzMy41OSAxLjYgMy41OSAzLjU5cy0xLjYgMy41OS0zLjU5IDMuNTltMy43NC02LjQ5Yy0uNDYgMC0uODQtLjM3LS44NC0uODRzLjM3LS44NC44NC0uODRzLjg0LjM3Ljg0Ljg0YS44LjggMCAwIDEtLjI0LjU5YS44LjggMCAwIDEtLjU5LjI0WiIvPjwvc3ZnPg==" alt=""></a>
+                            {% elif link.platform == 'X' %}
+                            <a href="{{link.link}}" target="_blank"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHBhdGggZmlsbD0iIzAwMDAwMCIgZD0iTTM4OS4yIDQ4aDcwLjZMMzA1LjYgMjI0LjJMNDg3IDQ2NEgzNDVMMjMzLjcgMzE4LjZMMTA2LjUgNDY0SDM1LjhsMTY0LjktMTg4LjVMMjYuOCA0OGgxNDUuNmwxMDAuNSAxMzIuOXptLTI0LjggMzczLjhoMzkuMUwxNTEuMSA4OGgtNDJ6Ii8+PC9zdmc+" alt=""></a>
+                            {% elif link.platform == 'Tiktok' %}
+                            <a href="{{link.link}}" target="_blank"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik0yMC4zNTcgNy43NWEuNTM3LjUzNyAwIDAgMC0uNDk1LS41MTZhNC43IDQuNyAwIDAgMS0yLjQxNS0uOTM4YTQuODUgNC44NSAwIDAgMS0xLjg4Ny0zLjNhLjU0LjU0IDAgMCAwLS41MTctLjQ5NmgtMi4xMDhhLjUxNy41MTcgMCAwIDAtLjUxNy41Mjd2MTIuNTlhMi43OTQgMi43OTQgMCAwIDEtMi45NzQgMi43NjJhMi44MTUgMi44MTUgMCAwIDEtMi41MS0zLjcxMUEyLjgzNiAyLjgzNiAwIDAgMSA5LjkzIDEyLjc4YS41MDYuNTA2IDAgMCAwIC41NTgtLjUwNlY5LjgwN3MtLjg5Ni0uMDYzLTEuMjAyLS4wNjNhNS4yNyA1LjI3IDAgMCAwLTQuMTAxIDEuOTNhNS44IDUuOCAwIDAgMC0xLjM3IDIuNTJhNS44NiA1Ljg2IDAgMCAwIDIuMTQgNi4wNzJBNS45MyA1LjkzIDAgMCAwIDkuNTkxIDIxLjVxLjQ1MSAwIC44OTYtLjA2M0E1Ljk1IDUuOTUgMCAwIDAgMTMuOCAxOS43OGE1Ljg0IDUuODQgMCAwIDAgMS43NS00LjEzM1Y4LjcxYTcuODQgNy44NCAwIDAgMCA0LjIxOCAxLjYxM2EuNTE3LjUxNyAwIDAgMCAuNTQ4LS41MjdWNy43NTF6Ii8+PC9zdmc+" alt=""></a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- boycotterShares Section -->
+    <div class="boycotterShares">
+        <a href="" class="title">
+
+        <div class="social">
+            {% for share in boycotter.share_set.all %}
+                {% if share.platform == 'Facebook' %}
+                <div class="post">
+                    {% if "videos" in share.link %}
+                        <iframe class="embed" 
+                                src="https://www.facebook.com/plugins/video.php?href={{ share.link|urlencode }}&show_text=false" 
+                                scrolling="no" 
+                                frameborder="0" 
+                                allowfullscreen="true" 
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                        </iframe>
+                    {% else %}
+                        <iframe class="embed" 
+                                src="https://www.facebook.com/plugins/post.php?href={{ share.link|urlencode }}&show_text=true" 
+                                scrolling="no" 
+                                frameborder="0" 
+                                allowfullscreen="true" 
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                        </iframe>
+                    {% endif %}
+                </div>
+                {% elif share.platform == 'Instagram' %}
+                <div class="post">
+                    <blockquote class="instagram-media embed" data-instgrm-permalink="{{share.link}}" data-instgrm-version="14"></blockquote>
+                </div>
+                {% elif share.platform == 'X' %}
+                <div class="post">
+                    <blockquote class="twitter-tweet embed">
+                        <p lang="en" dir="ltr"><a class="x-link" href="{{share.link}}"></a></p>
+                        <a class="x-link" href="{{share.link}}?ref_src=twsrc%5Etfw"></a>
+                    </blockquote>
+                </div>
+                {% elif share.platform == 'Tiktok' %}
+                <div class="post">
+                    <blockquote class="tiktok-embed embed" cite="{{share.link}}" data-video-id="{{share.link|slice:'-19:'}}">
+                        <section>
+                            <a target="_blank" href="{{share.link}}">View on TikTok</a>
+                        </section>
+                    </blockquote>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    
+    {% include 'components/footer.html' %}
+</div>
+
+<script async src="https://www.instagram.com/embed.js"></script>
+<script async src="https://platform.twitter.com/widgets.js"></script>
+<script async src="https://www.tiktok.com/embed.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to replace placeholder with actual embed
+    function loadEmbed(placeholder) {
+        const embedHtml = placeholder.getAttribute('data-embed');
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = embedHtml;
+        const embed = wrapper.firstChild;
+        
+        // For Facebook embeds, we need to parse the XFBML after inserting
+        if (embed.tagName === 'IFRAME' && embed.src.includes('facebook.com')) {
+            embed.onload = function() {
+                if (window.FB) {
+                    FB.XFBML.parse(embed.parentNode);
+                }
+            };
+        }
+        
+        placeholder.parentNode.replaceChild(embed, placeholder);
+        
+        // Re-run embed scripts
+        if (embed.className.includes('instagram-media')) {
+            if (window.instgrm) instgrm.Embeds.process();
+        } else if (embed.className.includes('twitter-tweet')) {
+            if (window.twttr) twttr.widgets.load(embed);
+        } else if (embed.className.includes('tiktok-embed')) {
+            if (window.TiktokEmbed) TiktokEmbed.reload();
+        }
+    }
+
+    // Create an Intersection Observer
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                loadEmbed(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {rootMargin: '200px'}); // Start loading when within 200px of viewport
+
+    // Replace embeds with placeholders and observe them
+    document.querySelectorAll('.embed').forEach(embed => {
+        const placeholder = document.createElement('div');
+        placeholder.className = 'embed-placeholder';
+        placeholder.setAttribute('data-embed', embed.outerHTML);
+        placeholder.innerHTML = 'Loading...'; // You can customize this
+        embed.parentNode.replaceChild(placeholder, embed);
+        observer.observe(placeholder);
+    });
+});
+</script>
+
+
+
+<script>
+    function initializeEmbeds() {
+        // Find all links related to X (Twitter)
+        const xLinks = document.querySelectorAll('.x-link');
+
+        // Replace each link's href with the correct Twitter URL
+        xLinks.forEach(link => {
+            const originalUrl = link.href;
+            const newUrl = originalUrl.replace('x.com', 'twitter.com');
+            link.href = newUrl;
+        });
+
+        // Reload Twitter widgets
+        if (window.twttr) {
+            window.twttr.widgets.load();
+        }
+
+        // Reinitialize Instagram embeds
+        if (window.instgrm) {
+            window.instgrm.Embeds.process();
+        }
+
+        // Reinitialize TikTok embeds
+        const tiktokEmbeds = document.querySelectorAll('.tiktok-embed');
+        tiktokEmbeds.forEach(embed => {
+            const videoId = embed.getAttribute('data-video-id');
+            if (videoId) {
+                embed.setAttribute('cite', `https://www.tiktok.com/@${videoId}`);
+                // You might need to call a function to re-initialize TikTok if it has one
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeEmbeds();
+    });
+
+    // Reinitialize embeds after HTMX transitions
+    document.body.addEventListener('htmx:afterSwap', function(event) {
+        initializeEmbeds();
+    });
+</script>
+
+<!-- Embed Scripts (Twitter, Instagram, TikTok) -->
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script async src="//www.instagram.com/embed.js"></script>
+<script async src="https://www.tiktok.com/embed.js"></script>
+
+</body>
+</html>
+{% endblock content %}

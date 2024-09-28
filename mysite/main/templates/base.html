@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boycotting</title>
+    <script src="https://unpkg.com/htmx.org@1.5.0"
+    integrity="sha384-oGA+prIp5Vchu6we2YkI51UtVzN9Jpx2Z7PnR1I78PnZlN8LkrCT4lqqqmDkyrvI"
+    crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/squareLogo.png' %}">
+</head>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Harmattan:wght@400;500;600;700&family=Rubik:ital,wght@0,300..900;1,300..900&family=Vazirmatn:wght@100..900&display=swap');
+* {margin: 0;padding: 0;box-sizing: border-box;direction: rtl;font-family: "Rubik", sans-serif;scrollbar-color: #999 #d4d4d4;scrollbar-width: thin;outline: none;
+}
+
+
+body {
+  overflow-x: hidden;
+
+    background-color: #000;
+}
+body a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+</style>
+<body>
+
+    {% block content %}
+    {% endblock content %}
+
+    <script>
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        document.body.addEventListener('htmx:afterSwap', function(event) {
+            scrollToTop();
+        });
+        
+        // Initial call when the page first loads
+        document.addEventListener('DOMContentLoaded', scrollToTop);
+        </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boycotting For Gaza</title>
+    <script src="https://unpkg.com/htmx.org"></script>
+</head>
+<style>
+    
+    .boycotting {
+        width: 65vw;
+        margin: auto;
+        margin-top: 150px;
+        margin-bottom: 200px;
+    }
+    .boycotting .title {
+        margin-bottom: 40px;
+        display: block;
+        width:  auto;
+        text-align: center;
+    }
+    .boycotting .title h1 {
+        font-size: 26px;
+        font-weight: bold;
+        line-height: 1.6;
+        margin: auto;
+        display: block;
+        color:white;
+        transition: ease-in-out 0.3s all;
+    }
+    .boycotting .title img {
+        width: 35px;
+        transition: ease-in-out 0.3s all;
+    }
+    .boycotting .title:hover h1 {
+        color: #ffffffbc;
+    }
+    .boycotting .title:hover img {
+        filter: opacity(75%);
+    }
+    .boycotting .items {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        align-items: center;
+    }
+    .boycotting .items .item {
+        padding: 30px;
+        border-radius: 5px;
+        transition: ease-in-out 0.3s all;
+    }
+    .boycotting .items .item:hover {
+        background-color: #ffffff21;
+    }
+    .boycotting .items .item img {
+        width: 100%;
+    }
+
+
+
+@media screen and (min-width: 1400px){
+    .boycotting {
+        width: 1000px;
+    }
+}
+
+@media screen and (max-width: 1400px){
+    .boycotting {
+        width: 75vw;
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .boycotting {
+        width: 90vw;
+    }
+
+}
+
+@media screen and (max-width: 1000px){
+    .boycotting {
+        width: 95vw;
+    }
+
+
+}
+
+@media screen and (max-width: 900px){
+    .boycotting .items {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .boycotting .items .item {
+        padding: 10px;
+    }
+}
+
+</style>
+<body hx-target="this" hx-swap="outerHTML">
+<div id="forplaceholder">
+    {% include 'components/loader.html' %}
+    {% include 'components/header.html' %}
+
+    
+    <div class="boycotting">
+        <a onclick="openLoader()"  hx-push-url="true" hx-swap="outerHTML show:#body-div:top" hx-get="" class="title">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xMSAyMmgyIi8+PGNpcmNsZSBjeD0iMTIiIGN5PSIzIiByPSIxIi8+PHBhdGggc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNNiAxOXYtOWMwLTEuMTQ0LjMyLTIuMjE0Ljg3Ni0zLjEyNE02IDE5aDEyTTYgMTlING0xNCAwdi0xbTAgMWgxTTkuOTk5IDQuMzQyQTYgNiAwIDAgMSAxOCAxMHYyLjM0MyIvPjxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZD0ibTQgNGwxNiAxNiIvPjwvZz48L3N2Zz4="  alt="">
+            <h1 class="title">المنتجات المقاطَعة</h1>
+        </a>
+        <div class="items">
+            {% for boycott in boycotting %}
+                <a href="{{boycott.link}}" target="_blank">
+                    <div class="item">
+                        <img src="/media/{{boycott.logo}}/" alt="">
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    
+    {% include 'components/footer.html' %}
+</div>
+
+</body>
+</html>
+{% endblock content %}

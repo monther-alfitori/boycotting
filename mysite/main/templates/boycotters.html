@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>boycotters For Gaza</title>
+    <script src="https://unpkg.com/htmx.org"></script>
+</head>
+<style>
+    
+    .boycotters {
+        width: 65vw;
+        margin: auto;
+        margin-top: 150px;
+        margin-bottom: 200px;
+    }
+    .boycotters .title {
+        margin-bottom: 40px;
+        display: block;
+        width:  auto;
+        text-align: center;
+    }
+    .boycotters .title h1 {
+        font-size: 26px;
+        font-weight: bold;
+        line-height: 1.6;
+        margin: auto;
+        display: block;
+        color:white;
+        transition: ease-in-out 0.3s all;
+    }
+    .boycotters .title img {
+        width: 35px;
+        transition: ease-in-out 0.3s all;
+    }
+    .boycotters .title:hover h1 {
+        color: #ffffffbc;
+    }
+    .boycotters .title:hover img {
+        filter: opacity(75%);
+    }
+    .boycotters .items {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        align-items: center;
+    }
+    .boycotters .items .item {
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        gap: 50px;
+        padding: 30px 0;
+        border-bottom: 0.1px solid #ffffff1c;
+    }
+    .boycotters .items .item .right img {
+        width: 150px;
+        transition: ease-in-out 0.3s all;
+    }
+    .boycotters .items .item .right img:hover {
+        transform: scale(1.05);
+    }
+    .boycotters .items .item .left {
+        position: relative;
+    }
+    .boycotters .items .item .left h1 {
+        font-size: 22px;
+        font-weight: 600;
+        color: #fff;
+        text-align: right;
+        transition: ease-in-out 0.3s all;
+        margin-bottom: 10px;
+    }
+    .boycotters .items .item .left h1:hover {
+        color: #ffffffbc;
+    }
+    .boycotters .items .item .left p {
+        font-size: 18px;
+        font-weight: 200;
+        color: #ffffffbc;
+        margin-top: 5px;
+        text-align: right;
+        display: -webkit-box;
+        -webkit-line-clamp: 1; 
+        -webkit-box-orient: vertical; 
+        overflow: hidden;
+        line-height: 1.3;
+        transition: ease-in-out 0.3s all;
+        direction: ltr;
+        word-break: break-word;
+    }
+    .boycotters .items .item .left p:hover {
+        color: #daa12e;
+    }
+
+    .boycotters .items .item .left .links {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+    .boycotters .items .item .left .links img {
+        width: 40px;
+        margin-left: 20px;
+        filter: brightness(0) invert(1);
+        transition: ease-in-out 0.5s all;
+    }
+    .boycotters .items .item .left .links img:hover {
+        background-color: #98989832;
+        border-radius: 50%;
+        padding: 10px;
+    }
+
+
+@media screen and (min-width: 1400px){
+    .boycotters {
+        width: 1000px;
+    }
+}
+
+@media screen and (max-width: 1400px){
+    .boycotters {
+        width: 75vw;
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .boycotters {
+        width: 90vw;
+    }
+
+}
+
+@media screen and (max-width: 1000px){
+    .boycotters {
+        width: 95vw;
+    }
+}
+
+@media screen and (max-width: 900px){
+    .boycotters .items {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    .boycotters .items .item {
+        grid-template-columns: 90px 1fr;
+        gap: 20px;
+        padding: 30px;
+        align-items: center;
+    }
+    .boycotters .items .item .right img {
+        width: 90px;
+    }
+    .boycotters .items .item .left h1 {
+        font-size: 20px;
+    }
+    .boycotters .items .item .left p {
+        font-size: 16px;
+    }
+    .boycotters .items .item .left .location {
+        display: none;
+    }
+    .boycotters .items .item .left .links {
+        position: relative;
+        bottom: none;
+        right: none;
+        padding-top: 20px;
+    }
+    .boycotters .items .item .left .links img {
+        width: 25px;
+        margin-left: 10px;
+    }
+    .boycotters .items .item .left .links img:hover {
+        padding: 5px;
+    }
+}
+
+</style>
+<body hx-target="this" hx-swap="outerHTML">
+<div id="forplaceholder">
+    {% include 'components/loader.html' %}
+    {% include 'components/header.html' %}
+
+    
+    <div class="boycotters">
+        <aonclick="openLoader()"  hx-push-url="true" hx-swap="outerHTML show:#body-div:top" hx-get="" class="title">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0zIDIxaDJtMTYgMGgtMk01IDIxaDE0TTUgMjFWOS4zMjhNMTkgMjFWOS4zMjhtLTE0IDBhMiAyIDAgMCAxLS4xMS0uMDY4bC0uNTQtLjM2YTIgMiAwIDAgMS0uNzQ3LTIuNDA3bC44OTQtMi4yMzZBMiAyIDAgMCAxIDYuMzU0IDNoMTEuMjkyYTIgMiAwIDAgMSAxLjg1NyAxLjI1N2wuODk0IDIuMjM2QTIgMiAwIDAgMSAxOS42NSA4LjlsLS41NC4zNmEyIDIgMCAwIDEtLjExLjA2OG0tMTQgMGEyIDIgMCAwIDAgMi4xMS0uMDY4TDkgOGwxLjg5IDEuMjZhMiAyIDAgMCAwIDIuMjIgMEwxNSA4bDEuODkgMS4yNmEyIDIgMCAwIDAgMi4xMS4wNjgiLz48cGF0aCBkPSJNMTQgMjF2LTVhMiAyIDAgMSAwLTQgMHY1Ii8+PC9nPjwvc3ZnPg=="  alt="">
+            <h1 class="title">المقاطِعين</h1>
+        </a>
+        <div class="items">
+            {% for boycotter in boycotters %}                
+                <div class="item">
+                    <div class="right">
+                        <a onclick="openLoader()"  hx-push-url="true" hx-swap="outerHTML show:#body-div:top" hx-get="{% url 'boycotter' boycotter.id %}">
+                            <img src="/media/{{boycotter.logo}}/" alt="">
+                        </a>
+                    </div>
+                    <div class="left">
+                        <a onclick="openLoader()"  hx-push-url="true" hx-swap="outerHTML show:#body-div:top" hx-get="{% url 'boycotter' boycotter.id %}"><h1>{{boycotter.name}}</h1></a>
+                        <a href="tel:{{boycotter.number}}" target="_blank"><p>{{boycotter.number}}</p></a>
+                        <a href="{{boycotter.location}}" target="_blank"><p class="location">{{boycotter.location}}</p></a>
+                        <div class="links">
+                            {% for link in boycotter.social_set.all %}
+                                {% if link.platform == 'Facebook' %}
+                                <a href="{{link.link}}" target="_blank"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik05LjYwMiAyMS4wMjZ2LTcuMjc0SDYuODE4YS41NDUuNTQ1IDAgMCAxLS41NDUtLjU0NVYxMC4zM2EuNTQ1LjU0NSAwIDAgMSAuNTQ1LS41NDVoMi43NzNWN2E0LjU0NyA0LjU0NyAwIDAgMSA0Ljg2LTQuOTg5aDIuMzJhLjU1Ni41NTYgMCAwIDEgLjU1Ny41NDZ2Mi40MzZhLjU1Ny41NTcgMCAwIDEtLjU1Ny41NDVoLTEuNDVjLTEuNTY2IDAtMS44NjcuNzQyLTEuODY3IDEuODMzdjIuNDEzaDMuNzIzYS41MzMuNTMzIDAgMCAxIC41NDYuNjAzbC0uMzM3IDIuODg4YS41NDUuNTQ1IDAgMCAxLS41NDUuNDc2aC0zLjM2NHY3LjI3NGEuOTYuOTYgMCAwIDEtLjk3NS45NzRoLTEuOTM3YS45Ni45NiAwIDAgMS0uOTYzLS45NzQiLz48L3N2Zz4=" alt=""></a>
+                                {% elif link.platform == 'Instagram' %}
+                                <a href="{{link.link}}" target="_blank"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTYgMTYiPjxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik04IDUuNjdDNi43MSA1LjY3IDUuNjcgNi43MiA1LjY3IDhTNi43MiAxMC4zMyA4IDEwLjMzUzEwLjMzIDkuMjggMTAuMzMgOFM5LjI4IDUuNjcgOCA1LjY3TTE1IDhjMC0uOTcgMC0xLjkyLS4wNS0yLjg5Yy0uMDUtMS4xMi0uMzEtMi4xMi0xLjEzLTIuOTNjLS44Mi0uODItMS44MS0xLjA4LTIuOTMtMS4xM0M5LjkyIDEgOC45NyAxIDggMXMtMS45MiAwLTIuODkuMDVjLTEuMTIuMDUtMi4xMi4zMS0yLjkzIDEuMTNDMS4zNiAzIDEuMSAzLjk5IDEuMDUgNS4xMUMxIDYuMDggMSA3LjAzIDEgOHMwIDEuOTIuMDUgMi44OWMuMDUgMS4xMi4zMSAyLjEyIDEuMTMgMi45M2MuODIuODIgMS44MSAxLjA4IDIuOTMgMS4xM0M2LjA4IDE1IDcuMDMgMTUgOCAxNXMxLjkyIDAgMi44OS0uMDVjMS4xMi0uMDUgMi4xMi0uMzEgMi45My0xLjEzYy44Mi0uODIgMS4wOC0xLjgxIDEuMTMtMi45M2MuMDYtLjk2LjA1LTEuOTIuMDUtMi44OW0tNyAzLjU5Yy0xLjk5IDAtMy41OS0xLjYtMy41OS0zLjU5UzYuMDEgNC40MSA4IDQuNDFzMy41OSAxLjYgMy41OSAzLjU5cy0xLjYgMy41OS0zLjU5IDMuNTltMy43NC02LjQ5Yy0uNDYgMC0uODQtLjM3LS44NC0uODRzLjM3LS44NC44NC0uODRzLjg0LjM3Ljg0Ljg0YS44LjggMCAwIDEtLjI0LjU5YS44LjggMCAwIDEtLjU5LjI0WiIvPjwvc3ZnPg==" alt=""></a>
+                                {% elif link.platform == 'X' %}
+                                <a href="{{link.link}}" target="_blank"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHBhdGggZmlsbD0iIzAwMDAwMCIgZD0iTTM4OS4yIDQ4aDcwLjZMMzA1LjYgMjI0LjJMNDg3IDQ2NEgzNDVMMjMzLjcgMzE4LjZMMTA2LjUgNDY0SDM1LjhsMTY0LjktMTg4LjVMMjYuOCA0OGgxNDUuNmwxMDAuNSAxMzIuOXptLTI0LjggMzczLjhoMzkuMUwxNTEuMSA4OGgtNDJ6Ii8+PC9zdmc+" alt=""></a>
+                                {% elif link.platform == 'Tiktok' %}
+                                <a href="{{link.link}}" target="_blank"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik0yMC4zNTcgNy43NWEuNTM3LjUzNyAwIDAgMC0uNDk1LS41MTZhNC43IDQuNyAwIDAgMS0yLjQxNS0uOTM4YTQuODUgNC44NSAwIDAgMS0xLjg4Ny0zLjNhLjU0LjU0IDAgMCAwLS41MTctLjQ5NmgtMi4xMDhhLjUxNy41MTcgMCAwIDAtLjUxNy41Mjd2MTIuNTlhMi43OTQgMi43OTQgMCAwIDEtMi45NzQgMi43NjJhMi44MTUgMi44MTUgMCAwIDEtMi41MS0zLjcxMUEyLjgzNiAyLjgzNiAwIDAgMSA5LjkzIDEyLjc4YS41MDYuNTA2IDAgMCAwIC41NTgtLjUwNlY5LjgwN3MtLjg5Ni0uMDYzLTEuMjAyLS4wNjNhNS4yNyA1LjI3IDAgMCAwLTQuMTAxIDEuOTNhNS44IDUuOCAwIDAgMC0xLjM3IDIuNTJhNS44NiA1Ljg2IDAgMCAwIDIuMTQgNi4wNzJBNS45MyA1LjkzIDAgMCAwIDkuNTkxIDIxLjVxLjQ1MSAwIC44OTYtLjA2M0E1Ljk1IDUuOTUgMCAwIDAgMTMuOCAxOS43OGE1Ljg0IDUuODQgMCAwIDAgMS43NS00LjEzM1Y4LjcxYTcuODQgNy44NCAwIDAgMCA0LjIxOCAxLjYxM2EuNTE3LjUxNyAwIDAgMCAuNTQ4LS41MjdWNy43NTF6Ii8+PC9zdmc+" alt=""></a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    
+    {% include 'components/footer.html' %}
+</div>
+
+</body>
+</html>
+{% endblock content %}

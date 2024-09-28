@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shares For Gaza</title>
+    <script src="https://unpkg.com/htmx.org"></script>
+</head>
+<style>
+    
+    .shares {
+        width: 65vw;
+        margin: auto;
+        margin-top: 150px;
+        margin-bottom: 200px;
+    }
+    .shares .title {
+        margin-bottom: 40px;
+        display: block;
+        width:  auto;
+        text-align: center;
+    }
+    .shares .title h1 {
+        font-size: 26px;
+        font-weight: bold;
+        line-height: 1.6;
+        margin: auto;
+        display: block;
+        color:white;
+        transition: ease-in-out 0.3s all;
+    }
+    .shares .title img {
+        width: 35px;
+        transition: ease-in-out 0.3s all;
+    }
+    .shares .title:hover h1 {
+        color: #ffffffbc;
+    }
+    .shares .title:hover img {
+        filter: opacity(75%);
+    }
+    .shares .social {
+        column-count: 3; 
+        column-gap: 20px;
+        margin: 0 auto;
+    }
+    .shares .social .post {
+        break-inside: avoid;
+        width: 100%;
+        background-color: white;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        cursor: pointer;
+        filter: opacity(90%) grayscale(20%);
+    }
+
+
+    .shares .social .post .instagram-media {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: auto !important;
+    }
+    .shares .social .post .embed {
+        width: 100%;
+        height: 100%;
+        min-height: 300px;
+        max-height: 550px;
+        margin: 10px 0;
+        border-radius: 10px;
+    }
+
+
+
+@media screen and (min-width: 1400px){
+    .shares {
+        width: 1000px;
+    }
+}
+
+@media screen and (max-width: 1400px){
+    .shares {
+        width: 75vw;
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .shares {
+        width: 90vw;
+    }
+
+}
+
+@media screen and (max-width: 1000px){
+    .shares {
+        width: 95vw;
+    }
+
+
+}
+
+@media screen and (max-width: 900px){
+    .shares .social {
+        column-count: 1;
+    }
+    .shares .social .post .embed {
+        min-height: none;
+        max-height: none;
+    }
+}
+
+</style>
+<body hx-target="this" hx-swap="outerHTML" id="body-div">
+<div id="forplaceholder">
+    {% include 'components/loader.html' %}
+    {% include 'components/header.html' %}
+
+    
+    <div class="shares">
+        <a onclick="openLoader()"  hx-push-url="true" hx-swap="outerHTML show:#body-div:top" hx-get="" class="title">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Im0xNSAxMGwtLjk4Ni0uMTY0QTEgMSAwIDAgMCAxNSAxMXpNNCAxMFY5YTEgMSAwIDAgMC0xIDF6bTE2LjUyMiAyLjM5MmwuOTguMTk2ek02IDIxaDExLjM2di0ySDZ6TTE4LjU2IDlIMTV2MmgzLjU2em0tMi41NzMgMS4xNjRsLjgwNS00LjgzNUwxNC44MiA1bC0uODA2IDQuODM2ek0xNC44MiAzaC0uMjE0djJoLjIxNHptLTMuNTQzIDEuNzgxTDguNzYzIDguNTU1bDEuNjY0IDEuMTFsMi41MTYtMy43NzR6TTcuOTMgOUg0djJoMy45M3pNMyAxMHY4aDJ2LTh6bTE3LjMwMiA4LjU4OGwxLjItNmwtMS45Ni0uMzkybC0xLjIgNnpNOC43NjIgOC41NTVBMSAxIDAgMCAxIDcuOTMgOXYyYTMgMyAwIDAgMCAyLjQ5Ni0xLjMzNnptOC4wMy0zLjIyNkEyIDIgMCAwIDAgMTQuODIgM3Yyek0xOC41NiAxMWExIDEgMCAwIDEgLjk4MSAxLjE5NmwxLjk2MS4zOTJBMyAzIDAgMCAwIDE4LjU2MSA5em0tMS4yIDEwYTMgMyAwIDAgMCAyLjk0Mi0yLjQxMmwtMS45Ni0uMzkyYTEgMSAwIDAgMS0uOTgyLjgwNHpNMTQuNjA2IDNhNCA0IDAgMCAwLTMuMzI4IDEuNzgxbDEuNjY0IDEuMTFBMiAyIDAgMCAxIDE0LjYwNiA1ek02IDE5YTEgMSAwIDAgMS0xLTFIM2EzIDMgMCAwIDAgMyAzeiIvPjxwYXRoIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNOCAxMHYxMCIvPjwvZz48L3N2Zz4="  alt="">
+            <h1 class="title">مشاركات المقاطِعين</h1>
+        </a>
+        <div class="social">
+            {% for share in shares %}
+                {% if share.platform == 'Facebook' %}
+                <div class="post">
+                    {% if "videos" in share.link %}
+                        <iframe class="embed" 
+                                src="https://www.facebook.com/plugins/video.php?href={{ share.link|urlencode }}&show_text=false" 
+                                scrolling="no" 
+                                frameborder="0" 
+                                allowfullscreen="true" 
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                        </iframe>
+                    {% else %}
+                        <iframe class="embed" 
+                                src="https://www.facebook.com/plugins/post.php?href={{ share.link|urlencode }}&show_text=true" 
+                                scrolling="no" 
+                                frameborder="0" 
+                                allowfullscreen="true" 
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                        </iframe>
+                    {% endif %}
+                </div>
+                {% elif share.platform == 'Instagram' %}
+                <div class="post">
+                    <blockquote class="instagram-media embed" data-instgrm-permalink="{{share.link}}" data-instgrm-version="14"></blockquote>
+                </div>
+                {% elif share.platform == 'X' %}
+                <div class="post">
+                    <blockquote class="twitter-tweet embed">
+                        <p lang="en" dir="ltr"><a class="x-link" href="{{share.link}}"></a></p>
+                        <a class="x-link" href="{{share.link}}?ref_src=twsrc%5Etfw"></a>
+                    </blockquote>
+                </div>
+                {% elif share.platform == 'Tiktok' %}
+                <div class="post">
+                    <blockquote class="tiktok-embed embed" cite="{{share.link}}" data-video-id="{{share.link|slice:'-19:'}}">
+                        <section>
+                            <a target="_blank" href="{{share.link}}">View on TikTok</a>
+                        </section>
+                    </blockquote>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    
+    {% include 'components/footer.html' %}
+</div>
+
+
+<script>
+    function initializeEmbeds() {
+        // Find all links related to X (Twitter)
+        const xLinks = document.querySelectorAll('.x-link');
+
+        // Replace each link's href with the correct Twitter URL
+        xLinks.forEach(link => {
+            const originalUrl = link.href;
+            const newUrl = originalUrl.replace('x.com', 'twitter.com');
+            link.href = newUrl;
+        });
+
+        // Reload Twitter widgets
+        if (window.twttr) {
+            window.twttr.widgets.load();
+        }
+
+        // Reinitialize Instagram embeds
+        if (window.instgrm) {
+            window.instgrm.Embeds.process();
+        }
+
+        // Reinitialize TikTok embeds
+        const tiktokEmbeds = document.querySelectorAll('.tiktok-embed');
+        tiktokEmbeds.forEach(embed => {
+            const videoId = embed.getAttribute('data-video-id');
+            if (videoId) {
+                embed.setAttribute('cite', `https://www.tiktok.com/@${videoId}`);
+                // You might need to call a function to re-initialize TikTok if it has one
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeEmbeds();
+    });
+
+    // Reinitialize embeds after HTMX transitions
+    document.body.addEventListener('htmx:afterSwap', function(event) {
+        initializeEmbeds();
+    });
+</script>
+
+<!-- Embed Scripts (Twitter, Instagram, TikTok) -->
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script async src="//www.instagram.com/embed.js"></script>
+<script async src="https://www.tiktok.com/embed.js"></script>
+</body>
+</html>
+{% endblock content %}
