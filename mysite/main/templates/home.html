@@ -10,796 +10,7 @@
     <script src="https://unpkg.com/htmx.org"></script>
 </head>
 <style>
-    .section1 {
-        margin: auto;
-        background-color: #000;
-        object-fit: cover;
-        height: 100vh;
-        display: flex;  
-    }
-    .section1 .overlay {
-         position: absolute; 
-         top: 0; 
-         left: 0; 
-         width: 100%; height: 100vh;
-    }
-    .section1 .overlay img { 
-        width: 100%; height: 100vh; 
-        -o-object-fit: cover; 
-        object-fit: cover; 
-        z-index: 0;
-    } 
-    .section1 .content {
-        z-index: 1; margin: auto; 
-        
-    }
 
-    .section1 .hero {
-        width: 65vw;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 80px;
-        margin: auto;
-        z-index: 1;
-        margin-top: 100px;
-        align-items: center;
-    }
-    .section1 .hero .right .seperate {
-        font-size: 15px;
-        color: #ffffffbc;
-        text-align: right;
-    }
-    .section1 .hero .right .top {
-        margin-bottom: 25px;
-        
-
-    }
-    .section1 .hero .right .top span {
-        width: 70%;
-        margin-left: auto;
-        font-size: 16px;
-        display: block;
-        font-weight: 600;
-        color: #daa12e;
-        margin-bottom: 5px;
-        text-align: right;
-        display: -webkit-box;
-        -webkit-line-clamp: 1; 
-        -webkit-box-orient: vertical; 
-        overflow: hidden;        
-        line-height: 1.5;
-    }
-    .section1 .hero .right .top h1 {
-        width: 70%;
-        margin-left: auto;
-        font-size: 26px;
-        font-weight: bold;
-        line-height: 1.6;
-        text-align: right;
-        color:white;
-        display: -webkit-box;
-        -webkit-line-clamp: 3; 
-        -webkit-box-orient: vertical; 
-        overflow: hidden;
-        border-radius: 5px;
-        transition: ease-in-out 0.3s all;
-    }
-    .section1 .hero .right .top h1:hover {
-        color: #ffffffbc;
-    }
-    .section1 .hero .right .top p {
-        width: 70%;
-        margin-left: auto;
-        font-size: 15px;
-        font-weight: 200;
-        color: #ffffffbc;
-        margin-top: 10px;
-        text-align: right;
-        display: -webkit-box;
-        -webkit-line-clamp: 2; 
-        -webkit-box-orient: vertical; 
-        overflow: hidden;
-    }
-    .section1 .hero .right .bottom {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        align-items: center;
-        margin-top: 25px;
-    }
-    .section1 .hero .right .bottom .item {
-        transition: ease-in-out 0.3s all;
-        padding: 5px;
-        cursor: pointer;
-        border-radius: 3px;
-    }
-    .section1 .hero .right .bottom .item:hover {
-        background-color: #ffffff25;
-    }
-    .section1 .hero .right .bottom .item h1 {
-        font-size: 15px;
-        font-weight: 400;
-        color: #ffffffbc;
-        text-align: right;
-        display: -webkit-box;
-        -webkit-line-clamp: 2; 
-        -webkit-box-orient: vertical; 
-        overflow: hidden;
-        line-height: 1.3;
-    }
-    .section1 .hero .right .bottom .item h1 span {
-        color: #daa12e;
-    }
-        .section1 .hero .right .bottom .item p {
-        font-size: 12px;
-        font-weight: 200;
-        color: #ffffffa3;
-        text-align: right;
-        display: -webkit-box;
-        -webkit-line-clamp: 1; 
-        -webkit-box-orient: vertical; 
-        overflow: hidden;
-        margin-top: 0px;
-        line-height: 1.4;
-    }
-
-    .section1 .hero .left {
-        padding: 20px 10px;
-        width: 65%;
-        max-height: 65vh;
-        overflow-y: auto;
-        scrollbar-width: none;
-        margin-right: auto;
-        border-radius: 3px;
-        background-color: rgba(96, 96, 96, 0.277); /* Light background color with opacity */
-        backdrop-filter: blur(5px); /* Apply the blur effect */
-        -webkit-backdrop-filter: blur(10px); /* For Safari support */
-    }
-
-    .section1 .hero .left .title {
-        display: grid;
-        grid-template-columns: 1fr 30px;
-        gap: 5px;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-    .section1 .hero .left .title img {
-        width: 30px;
-        transition: ease-in-out 0.3s all;
-        border-radius: 50%;
-    }
-    .section1 .hero .left .title img:hover {
-        padding: 5px;
-        background-color: #ffffff36;
-    }
-    .section1 .hero .left .title h1 {
-        font-size: 16px;
-        font-weight: 600;
-        color: #daa12e;
-        text-align: right;
-        display: -webkit-box;
-        -webkit-line-clamp: 2; 
-        -webkit-box-orient: vertical; 
-        overflow: hidden;
-        line-height: 1.3;
-        margin-bottom: 10px;
-    }
-    .section1 .hero .left .item {
-        transition: ease-in-out 0.3s all;
-        padding: 10px;
-        cursor: pointer;
-    }
-    .section1 .hero .left .item:hover {
-        background-color: #ffffff0d;
-    }
-
-    .section1 .hero .left .item h1 {
-        font-size: 15px;
-        font-weight: 400;
-        color: #ffffffbc;
-        text-align: right;
-        display: -webkit-box;
-        -webkit-line-clamp: 3; 
-        -webkit-box-orient: vertical; 
-        overflow: hidden;
-        line-height: 1.3;
-    }
-    .section1 .hero .left .item p {
-        font-size: 12px;
-        font-weight: 200;
-        color: #ffffff84;
-        text-align: right;
-        display: -webkit-box;
-        -webkit-line-clamp: 1; 
-        -webkit-box-orient: vertical; 
-        overflow: hidden;
-        margin-top: 5px;
-    }
-
-    .section2 {
-        width: 65vw;
-        margin: auto;
-        margin-top: 50px;
-        margin-bottom: 150px;
-        text-align: center;
-    }
-    .section2 .title {
-        margin-bottom: 20px;
-        display: block;
-        width:  auto;
-    }
-    .section2 .title h1 {
-        font-size: 26px;
-        font-weight: bold;
-        line-height: 1.6;
-        margin: auto;
-        display: block;
-        color:white;
-        transition: ease-in-out 0.3s all;
-    }
-    .section2 .title img {
-        width: 35px;
-        transition: ease-in-out 0.3s all;
-    }
-    .section2 .title:hover h1 {
-        color: #ffffffbc;
-    }
-    .section2 .title:hover img {
-        filter: opacity(75%);
-    }
-    .section2 .items {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        align-items: center;
-        padding: 40px 30px 50px 30px;
-        background-color: #9393932b;
-        border-radius: 5px;
-    }
-    .section2 .items .item {
-        padding: 30px;
-        border-radius: 5px;
-        transition: ease-in-out 0.3s all;
-    }
-    .section2 .items .item:hover {
-        background-color: #ffffff21;
-    }
-    .section2 .items .item img {
-        width: 100%;
-    }
-    .section2 .loadMore {
-        font-size: 16px;
-        font-weight: 400;
-        color: #000;
-        background-color: #daa12e;
-        transition: ease-in-out 0.3s all;
-        border-radius: 3px;
-        padding: 13px 10px;
-        width: 170px;
-        text-align: center;
-        display: block;
-        margin: auto;
-        position: relative;
-        top: -20px;
-    }
-    .section2 .loadMore:hover {
-        transform: scale(1.05);
-    }
-
-    
-
-
-    .section3 {
-        width: 65vw;
-        margin: auto;
-        margin-top: 50px;
-        margin-bottom: 150px;
-        text-align: center;
-    }
-    .section3 .title {
-        margin-bottom: 30px;
-        display: block;
-        width:  auto;
-    }
-    .section3 .title h1 {
-        font-size: 26px;
-        font-weight: bold;
-        line-height: 1.6;
-        margin: auto;
-        display: block;
-        color:white;
-        transition: ease-in-out 0.3s all;
-    }
-    .section3 .title img {
-        width: 35px;
-        transition: ease-in-out 0.3s all;
-    }
-    .section3 .title:hover h1 {
-        color: #ffffffbc;
-    }
-    .section3 .title:hover img {
-        filter: opacity(75%);
-    }
-     .section3 .social {
-        column-count: 3; 
-        column-gap: 20px;
-        margin: 0 auto;
-    }
-    .section3 .social .post {
-        break-inside: avoid;
-        width: 100%;
-        background-color: white;
-        padding: 15px;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        cursor: pointer;
-        filter: opacity(90%) grayscale(20%);
-    }
-
-
-    .section3 .social .post .instagram-media {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: auto !important;
-    }
-    .section3 .social .post .embed {
-        width: 100%;
-        height: 100%;
-        min-height: 300px;
-        max-height: 550px;
-        margin: 10px 0;
-        border-radius: 10px;
-    }
-    .section3 .loadMore {
-        font-size: 16px;
-        font-weight: 400;
-        color: #000;
-        background-color: #daa12e;
-        transition: ease-in-out 0.3s all;
-        border-radius: 3px;
-        padding: 13px 10px;
-        width: 170px;
-        text-align: center;
-        display: block;
-        margin: auto;
-        margin-top: 40px;
-    }
-    .section3 .loadMore:hover {
-        transform: scale(1.05);
-    }
- 
-
-
-
-
-    .section4 {
-        width: 100%;
-        margin: auto;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        text-align: center;
-        position: relative;
-    }
-    .section4 .title {
-        margin-bottom: 20px;
-        display: block;
-        width:  auto;
-    }
-    .section4 .title h1 {
-        font-size: 26px;
-        font-weight: bold;
-        line-height: 1.6;
-        margin: auto;
-        display: block;
-        color:white;
-        transition: ease-in-out 0.3s all;
-    }
-    .section4 .title img {
-        width: 35px;
-        transition: ease-in-out 0.3s all;
-    }
-    .section4 .title:hover h1 {
-        color: #ffffffbc;
-    }
-    .section4 .title:hover img {
-        filter: opacity(75%);
-    }
-    .section4 .items {
-        width: 100%;
-        display: grid;
-        grid-auto-flow: column; /* Makes the grid lay out items in a row */
-        grid-auto-columns: min-content; /* Ensures items take up only as much space as needed */
-        overflow-x: scroll; /* Allows horizontal scrolling */
-        scroll-behavior: smooth; /* Adds smooth scrolling */
-        align-items: center;
-        padding: 40px 30px 40px 30px;
-        background-color: #9393932b;
-        border-radius: 5px;
-        scrollbar-width: none; 
-    }
-    .section4 .arrow {
-        position: absolute;
-        top: 30px;
-        background-color: #9393932b;
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-        z-index: 10;
-        transition: ease-in-out 0.3s all;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-    }
-    .section4 .arrow img {
-        width: 30px;
-    }
-    .section4 .arrow.left {
-        left: 5%;
-    }
-
-    .section4 .arrow.right {
-        right: 5%;
-    }
-
-    .section4 .arrow:hover {
-        background-color: #9393934c;
-    }
-    .section4 .items::-webkit-scrollbar {
-        display: none; 
-    }
-    .section4 .items::-webkit-scrollbar-thumb:hover {
-        background: #555; /* Darken when hovered */
-    }
-    .section4 .items .item {
-        width: 150px;
-        height: 150px;
-        padding: 20px;
-        border-radius: 5px;
-        transition: ease-in-out 0.3s all;
-        display: flex;
-        justify-content: center;
-    }
-    .section4 .items .item:hover {
-        background-color: #ffffff21;
-    }
-    .section4 .items .item img {
-        width: 100%;
-        object-fit: contain;
-        filter: opacity(70%);
-    }
-
-
-
-    .section5 {
-        width: 100%;
-        margin: auto;
-        margin-top: 50px;
-        margin-bottom: 150px;
-        text-align: center;
-        position: relative;
-    }
-    .section5 .title {
-        margin-bottom: 20px;
-        display: block;
-        width:  auto;
-    }
-    .section5 .title h1 {
-        font-size: 26px;
-        font-weight: bold;
-        line-height: 1.6;
-        margin: auto;
-        display: block;
-        color:white;
-        transition: ease-in-out 0.3s all;
-    }
-    .section5 .title img {
-        width: 35px;
-        transition: ease-in-out 0.3s all;
-    }
-    .section5 .title:hover h1 {
-        color: #ffffffbc;
-    }
-    .section5 .title:hover img {
-        filter: opacity(75%);
-    }
-    .section5 .items {
-        width: 100%;
-        display: grid;
-        grid-auto-flow: column; /* Makes the grid lay out items in a row */
-        grid-auto-columns: min-content; /* Ensures items take up only as much space as needed */
-        overflow-x: scroll; /* Allows horizontal scrolling */
-        scroll-behavior: smooth; /* Adds smooth scrolling */
-        align-items: center;
-        padding: 40px 30px 40px 30px;
-        background-color: #9393932b;
-        border-radius: 5px;
-        scrollbar-width: none; 
-    }
-    .section5 .arrow {
-        position: absolute;
-        top: 30px;
-        background-color: #9393932b;
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-        z-index: 10;
-        transition: ease-in-out 0.3s all;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-    }
-    .section5 .arrow img {
-        width: 30px;
-    }
-    .section5 .arrow.left {
-        left: 5%;
-    }
-
-    .section5 .arrow.right {
-        right: 5%;
-    }
-
-    .section5 .arrow:hover {
-        background-color: #9393934c;
-    }
-    .section5 .items::-webkit-scrollbar {
-        display: none; 
-    }
-    .section5 .items::-webkit-scrollbar-thumb:hover {
-        background: #555; /* Darken when hovered */
-    }
-    .section5 .items .item {
-        width: 150px;
-        height: 150px;
-        padding: 20px;
-        border-radius: 5px;
-        transition: ease-in-out 0.3s all;
-        display: flex;
-        justify-content: center;
-    }
-    .section5 .items .item:hover {
-        background-color: #ffffff21;
-    }
-    .section5 .items .item img {
-        width: 100%;
-        object-fit: contain;
-    }
-
-
-
-    .section6 {
-        width: 65vw;
-        margin: auto;
-        margin-top: 50px;
-        margin-bottom: 150px;
-        text-align: center;
-
-    }
-    .section6 .sides {
-        column-count: 2; 
-        column-gap: 50px;
-    }
-    .section6 .title {
-        margin-bottom: 30px;
-        display: block;
-        width:  auto;
-    }
-    .section6 .title h1 {
-        font-size: 26px;
-        font-weight: bold;
-        line-height: 1.6;
-        margin: auto;
-        display: block;
-        color:white;
-        transition: ease-in-out 0.3s all;
-    }
-    .section6 .title img {
-        width: 35px;
-        transition: ease-in-out 0.3s all;
-    }
-    .section6 .title:hover h1 {
-        color: #ffffffbc;
-    }
-    .section6 .title:hover img {
-        filter: opacity(75%);
-    }
-    .section6 .accordion {
-        padding: 10px 0;
-        border-bottom: 0.1px solid #ffffff1c;
-    }
-    .section6 input.tgg-title {
-        appearance: unset;
-        all:unset;
-    }
-    .section6 .accordion-title label{
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-    }
-    .section6 .accordion-title h2{
-        font-size: 20px /*var(--font-size)*/;
-        font-weight: 400;
-        color: #fff;
-        text-align: right;
-    }
-    .section6 .accordion-title:hover h2{
-        color: #ffffffbc;
-    }
-    .section6 .accordion-title span{
-        margin-left: auto;
-        transition: transform .3s ease-in-out;
-    }
-    .section6 .accordion-title img {
-        width: 30px;
-    }
-
-    .section6 .accordion-content {
-        color: #ffffffbc;
-        text-align: right;
-        overflow: hidden;
-        max-height: 0;
-        transition: max-height .4s ease-in-out;
-        font-size: 18px;
-        margin-top: 5px;
-    }
-    /* onclick "" */
-    .section6 .accordion .tgg-title:checked + div>label>h2 {
-        color: #daa12e;
-    }
-    .section6 .accordion .tgg-title:checked + div>label>span {
-        will-change: transform;
-        transform: rotate(180deg);
-    }
-
-    .section6 .accordion .tgg-title:checked ~ .accordion-content{
-        will-change: max-height;
-        max-height: 200px;
-    }
-
-        /* Style for the copied text prompt */
-    #copyPrompt {
-        display: none; /* Initially hidden */
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #daa12e;
-        color: #ffffff;
-        padding: 15px 50px;
-        border-radius: 5px;
-        font-size: 18px;
-        z-index: 9999; /* Ensures it is on top */
-        text-align: center;
-    }
-
-
-@media screen and (min-width: 1400px){
-
-    .section1 .hero {
-        width: 1000px;
-    }
-    .section2 {
-        width: 1000px;
-    }
-    .section3 {
-        width: 1000px;
-    }
-    .section6 {
-        width: 1000px;
-    }
-}
-
-@media screen and (max-width: 1400px){
-
-    .section1 .hero {
-        width: 75vw;
-    }
-    .section2 {
-        width: 75vw;
-    }
-    .section3 {
-        width: 75vw;
-    }
-    .section6 {
-        width: 75vw;
-    }
-}
-
-@media screen and (max-width: 1100px){
-
-    .section1 .hero {
-        width: 90vw;
-    }
-    .section2 {
-        width: 90vw;
-    }
-    .section3 {
-        width: 90vw;
-    }
-    .section6 {
-        width: 90vw;
-    }
-
-}
-
-@media screen and (max-width: 1000px){
-
-    .section1 .hero {
-        width: 95vw;
-    }
-    .section2 {
-        width: 95vw;
-    }
-    .section3 {
-        width: 95vw;
-    }
-    .section6 {
-        width: 95vw;
-    }
-
-}
-
-@media screen and (max-width: 900px){
-    .section1 {
-        height: auto;
-    }
-    .section1 .overlay img { 
-        filter: brightness(80%);
-        object-position: right center;
-    } 
-    .section1 .hero {
-        grid-template-columns: 1fr;
-        margin-top: 150px;
-    }
-    .section1 .hero .right .top {
-        margin-bottom: 5px;
-    }
-    .section1 .hero .right .top h1 {
-        width: 90%;
-    }
-    .section1 .hero .right .bottom {
-        margin-top: 15px;
-        grid-template-columns: 1fr;
-    }
-    .section1 .hero .right .bottom .item h1 {
-        -webkit-line-clamp: 1; 
-    }
-    .section1 .hero .left {
-        width: 100%;
-        margin-bottom: 100px;;
-    }
-    .section2 .items {
-        grid-template-columns: 1fr 1fr 1fr;
-        padding: 40px 20px 50px 20px;
-        grid-auto-flow: dense;
-    }
-    .section2 .items .item {
-        padding: 10px;
-    }
-    .section3 .social {
-        column-count: 1;
-    }
-    .section3 .social .post .embed {
-        min-height: none;
-        max-height: none;
-    }
-    .section4 .arrow {
-        display: none;
-    }
-    .section4 .items {
-        padding: 20px 10px 20px 10px;
-    }
-    .section5 .arrow {
-        display: none;
-    }
-    .section5 .items {
-        padding: 20px 10px 20px 10px;
-    }
-    .section6 .sides {
-        column-count: 1; 
-    }
-}
 </style>
 <body hx-target="this" hx-swap="outerHTML">
 <div class="forplaceholder">
@@ -808,9 +19,11 @@
     
     <!-- Section1 -->
     <div class="section1">
+        
         <div class="overlay">
-            <img src="{% static 'images/background1.webp' %}" alt="">
+            <img src="{% static 'images/background3.webp' %}" alt="">
         </div>
+        
         <div class="content">
         
             <div class="hero">
@@ -818,14 +31,14 @@
                     <div class="top">
                         {% for article in articles|slice:":1" %}
                             <span class="created_at">{{article.topic}} &#9679; منذ {{article.created_at|timesince}}</span>
-                            <a href="{{article.link}}" target="_blank"><h1>{{article.title}}</h1></a>
-                            <p>نقلا عن {{article.source}}</p>
+                            <a onclick="openLoader()" hx-push-url="true" href="{% url 'article' article.id %}"><h1>{{article.title}}</h1></a>
+                            <p>بقلم {{article.source}}</p>
                         {% endfor %}
                     </div>
                     <span class="seperate">&#65343;&#65343;&#65343;&#65343;&#65343;&#65343;&#65343;&#65343;&#65343;&#65343;&#65343;&#65343;&#65343;</span>
                     <div class="bottom">
                         {% for article in articles|slice:"1:4" %}
-                        <a href="{{article.link}}" target="_blank">
+                        <a onclick="openLoader()" hx-push-url="true" href="{% url 'article' article.id %}">
                             <div class="item">
                                 <h1><span>&#9679; </span>{{article.title}}</h1>
                                 <p class="created_at">منذ {{article.created_at|timesince}}</p>
@@ -839,8 +52,8 @@
                 <div class="left">
                     <div class="title">
                         <h1>عن الـ7 من أكتوبر</h1>
-                        <a onclick="openLoader()" hx-push-url="true" hx-get="{% url 'phrases' %}">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ViYWYzOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjIiIGQ9Im0xNCA3bC01IDVsNSA1Ii8+PC9zdmc+" alt="">
+                        <a onclick="openLoader()" hx-push-url="true" href="{% url 'phrases' %}">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwQTM2QyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0ibTE1IDZsLTYgNmw2IDYiLz48L3N2Zz4=" alt="">
                         </a>
                     </div>
                     {% for phrase in phrases|slice:":5" %}
@@ -861,15 +74,14 @@
 
     <!-- Section2 -->
     <div class="section2">
-        <a onclick="openLoader()"  hx-push-url="true" hx-swap="outerHTML show:#body-div:top" hx-get="{% url 'boycotters' %}" class="title">
-            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0zIDIxaDJtMTYgMGgtMk01IDIxaDE0TTUgMjFWOS4zMjhNMTkgMjFWOS4zMjhtLTE0IDBhMiAyIDAgMCAxLS4xMS0uMDY4bC0uNTQtLjM2YTIgMiAwIDAgMS0uNzQ3LTIuNDA3bC44OTQtMi4yMzZBMiAyIDAgMCAxIDYuMzU0IDNoMTEuMjkyYTIgMiAwIDAgMSAxLjg1NyAxLjI1N2wuODk0IDIuMjM2QTIgMiAwIDAgMSAxOS42NSA4LjlsLS41NC4zNmEyIDIgMCAwIDEtLjExLjA2OG0tMTQgMGEyIDIgMCAwIDAgMi4xMS0uMDY4TDkgOGwxLjg5IDEuMjZhMiAyIDAgMCAwIDIuMjIgMEwxNSA4bDEuODkgMS4yNmEyIDIgMCAwIDAgMi4xMS4wNjgiLz48cGF0aCBkPSJNMTQgMjF2LTVhMiAyIDAgMSAwLTQgMHY1Ii8+PC9nPjwvc3ZnPg=="  alt="">
+        <a onclick="openLoader()"  hx-push-url="true" href="{% url 'boycotters' %}" class="title">
             <h1 class="title">قائمة المقاطِعين</h1>
         </a>
 
 
         <div class="items">
             {% for boycotter in brands|slice:":10" %}
-            <a onclick="openLoader()"  hx-push-url="true" hx-swap="outerHTML show:#body-div:top" hx-get="{% url 'boycotter' boycotter.id %}">
+            <a onclick="openLoader()"  hx-push-url="true" href="{% url 'boycotter' boycotter.id %}">
                 <div class="item">
                     <img src="/media/{{boycotter.logo}}/" alt="">
                 </div>
@@ -878,84 +90,212 @@
 
 
         </div>
-        <a onclick="openLoader()"  hx-push-url="true" hx-swap="outerHTML show:#body-div:top" hx-get="{% url 'boycotters' %}" class="loadMore">عرض الجميع</a>
+        <a onclick="openLoader()"  hx-push-url="true" href="{% url 'boycotters' %}" class="loadMore">عرض الجميع</a>
     </div>
 
 
 
     <!-- Section 3 -->
     <div class="section3">
-        <a onclick="openLoader()"  hx-push-url="true" hx-swap="outerHTML show:#body-div:top" hx-get="{% url 'shares' %}" class="title">
-            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Im0xNSAxMGwtLjk4Ni0uMTY0QTEgMSAwIDAgMCAxNSAxMXpNNCAxMFY5YTEgMSAwIDAgMC0xIDF6bTE2LjUyMiAyLjM5MmwuOTguMTk2ek02IDIxaDExLjM2di0ySDZ6TTE4LjU2IDlIMTV2MmgzLjU2em0tMi41NzMgMS4xNjRsLjgwNS00LjgzNUwxNC44MiA1bC0uODA2IDQuODM2ek0xNC44MiAzaC0uMjE0djJoLjIxNHptLTMuNTQzIDEuNzgxTDguNzYzIDguNTU1bDEuNjY0IDEuMTFsMi41MTYtMy43NzR6TTcuOTMgOUg0djJoMy45M3pNMyAxMHY4aDJ2LTh6bTE3LjMwMiA4LjU4OGwxLjItNmwtMS45Ni0uMzkybC0xLjIgNnpNOC43NjIgOC41NTVBMSAxIDAgMCAxIDcuOTMgOXYyYTMgMyAwIDAgMCAyLjQ5Ni0xLjMzNnptOC4wMy0zLjIyNkEyIDIgMCAwIDAgMTQuODIgM3Yyek0xOC41NiAxMWExIDEgMCAwIDEgLjk4MSAxLjE5NmwxLjk2MS4zOTJBMyAzIDAgMCAwIDE4LjU2MSA5em0tMS4yIDEwYTMgMyAwIDAgMCAyLjk0Mi0yLjQxMmwtMS45Ni0uMzkyYTEgMSAwIDAgMS0uOTgyLjgwNHpNMTQuNjA2IDNhNCA0IDAgMCAwLTMuMzI4IDEuNzgxbDEuNjY0IDEuMTFBMiAyIDAgMCAxIDE0LjYwNiA1ek02IDE5YTEgMSAwIDAgMS0xLTFIM2EzIDMgMCAwIDAgMyAzeiIvPjxwYXRoIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNOCAxMHYxMCIvPjwvZz48L3N2Zz4="  alt="">
-            <h1 class="title">مشاركات المقاطِعين</h1>
+        <a onclick="openLoader()"  hx-push-url="true" href="{% url 'shares' %}" class="title">
+            <h1 class="title">مشاركات</h1>
         </a>
         <div class="social">
             {% for share in shares|slice:":6" %}
-                {% if share.platform == 'Facebook' %}
-                <div class="post">
-                    {% if "videos" in share.link %}
-                        <iframe class="embed" 
-                                src="https://www.facebook.com/plugins/video.php?href={{ share.link|urlencode }}&show_text=false" 
-                                scrolling="no" 
-                                frameborder="0" 
-                                allowfullscreen="true" 
-                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-                        </iframe>
-                    {% else %}
-                        <iframe class="embed" 
-                                src="https://www.facebook.com/plugins/post.php?href={{ share.link|urlencode }}&show_text=true" 
-                                scrolling="no" 
-                                frameborder="0" 
-                                allowfullscreen="true" 
-                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-                        </iframe>
-                    {% endif %}
+            {% if share.platform == 'Instagram' %}
+            <a href="{{share.link}}" target="_blank">
+            <div class="post instagramPost">
+                <div class="top">
+                    <div class="right">
+                        <div class="avatar">
+                            <img src="/media/{{share.brand.logo}}/" alt="">
+                        </div>
+                        <div class="info">
+                            <h3>{{share.brand.name}}</h3>
+                            <p>{{share.platform}}</p>
+                        </div>
+                    </div>
+                    <div class="left">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTYgMTYiPjxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik04IDUuNjdDNi43MSA1LjY3IDUuNjcgNi43MiA1LjY3IDhTNi43MiAxMC4zMyA4IDEwLjMzUzEwLjMzIDkuMjggMTAuMzMgOFM5LjI4IDUuNjcgOCA1LjY3TTE1IDhjMC0uOTcgMC0xLjkyLS4wNS0yLjg5Yy0uMDUtMS4xMi0uMzEtMi4xMi0xLjEzLTIuOTNjLS44Mi0uODItMS44MS0xLjA4LTIuOTMtMS4xM0M5LjkyIDEgOC45NyAxIDggMXMtMS45MiAwLTIuODkuMDVjLTEuMTIuMDUtMi4xMi4zMS0yLjkzIDEuMTNDMS4zNiAzIDEuMSAzLjk5IDEuMDUgNS4xMUMxIDYuMDggMSA3LjAzIDEgOHMwIDEuOTIuMDUgMi44OWMuMDUgMS4xMi4zMSAyLjEyIDEuMTMgMi45M2MuODIuODIgMS44MSAxLjA4IDIuOTMgMS4xM0M2LjA4IDE1IDcuMDMgMTUgOCAxNXMxLjkyIDAgMi44OS0uMDVjMS4xMi0uMDUgMi4xMi0uMzEgMi45My0xLjEzYy44Mi0uODIgMS4wOC0xLjgxIDEuMTMtMi45M2MuMDYtLjk2LjA1LTEuOTIuMDUtMi44OW0tNyAzLjU5Yy0xLjk5IDAtMy41OS0xLjYtMy41OS0zLjU5UzYuMDEgNC40MSA4IDQuNDFzMy41OSAxLjYgMy41OSAzLjU5cy0xLjYgMy41OS0zLjU5IDMuNTltMy43NC02LjQ5Yy0uNDYgMC0uODQtLjM3LS44NC0uODRzLjM3LS44NC44NC0uODRzLjg0LjM3Ljg0Ljg0YS44LjggMCAwIDEtLjI0LjU5YS44LjggMCAwIDEtLjU5LjI0WiIvPjwvc3ZnPg==" alt="">
+                    </div>
                 </div>
-                {% elif share.platform == 'Instagram' %}
-                <div class="post">
-                    <blockquote class="instagram-media embed" data-instgrm-permalink="{{share.link}}" data-instgrm-version="14"></blockquote>
-                </div>
-                {% elif share.platform == 'X' %}
-                <div class="post">
-                    <blockquote class="twitter-tweet embed">
-                        <p lang="en" dir="ltr"><a class="x-link" href="{{share.link}}"></a></p>
-                        <a class="x-link" href="{{share.link}}?ref_src=twsrc%5Etfw"></a>
-                    </blockquote>
-                </div>
-                {% elif share.platform == 'Tiktok' %}
-                <div class="post">
-                    <blockquote class="tiktok-embed embed" cite="{{share.link}}" data-video-id="{{share.link|slice:'-19:'}}">
-                        <section>
-                            <a target="_blank" href="{{share.link}}">View on TikTok</a>
-                        </section>
-                    </blockquote>
+
+                {% if share.text != '' %}
+                <div class="middle">
+                    <div class="text">
+                        <p>{{share.text}}</p>
+                    </div>
                 </div>
                 {% endif %}
+
+                {% if share.media != '' %}
+                <div class="bottom">
+                    <div class="media">
+                        <img src="/media/{{share.media}}/" alt="">
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+            </a>
+            {% elif share.platform == 'Facebook' %}
+            <a href="{{share.link}}" target="_blank">
+            <div class="post facebookPost">
+                <div class="top">
+                    <div class="right">
+                        <div class="avatar">
+                            <img src="/media/{{share.brand.logo}}/" alt="">
+                        </div>
+                        <div class="info">
+                            <h3>{{share.brand.name}}</h3>
+                            <p>{{share.platform}}</p>
+                        </div>
+                    </div>
+                    <div class="left">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTYgMTYiPjxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik0xNiA4LjA0OWMwLTQuNDQ2LTMuNTgyLTguMDUtOC04LjA1QzMuNTggMC0uMDAyIDMuNjAzLS4wMDIgOC4wNWMwIDQuMDE3IDIuOTI2IDcuMzQ3IDYuNzUgNy45NTF2LTUuNjI1aC0yLjAzVjguMDVINi43NVY2LjI3NWMwLTIuMDE3IDEuMTk1LTMuMTMxIDMuMDIyLTMuMTMxYy44NzYgMCAxLjc5MS4xNTcgMS43OTEuMTU3djEuOThoLTEuMDA5Yy0uOTkzIDAtMS4zMDMuNjIxLTEuMzAzIDEuMjU4djEuNTFoMi4yMThsLS4zNTQgMi4zMjZIOS4yNVYxNmMzLjgyNC0uNjA0IDYuNzUtMy45MzQgNi43NS03Ljk1MSIvPjwvc3ZnPg==" alt="">
+                    </div>
+                </div>
+
+                {% if share.text != '' %}
+                <div class="middle">
+                    <div class="text">
+                        <p>{{share.text}}</p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if share.media != '' %}
+                <div class="bottom">
+                    <div class="media">
+                        <img src="/media/{{share.media}}/" alt="">
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+            </a>
+            {% elif share.platform == 'X' %}
+            <a href="{{share.link}}" target="_blank">
+            <div class="post xPost">
+                <div class="top">
+                    <div class="right">
+                        <div class="avatar">
+                            <img src="/media/{{share.brand.logo}}/" alt="">
+                        </div>
+                        <div class="info">
+                            <h3>{{share.brand.name}}</h3>
+                            <p>{{share.platform}}</p>
+                        </div>
+                    </div>
+                    <div class="left">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjU2IDI1NiI+PHBhdGggZmlsbD0iIzAwMDAwMCIgZD0iTTIxNSAyMTkuODVhOCA4IDAgMCAxLTcgNC4xNWgtNDhhOCA4IDAgMCAxLTYuNzUtMy43MWwtNDAuNDktNjMuNjNsLTU4Ljg0IDY0LjcyYTggOCAwIDAgMS0xMS44NC0xMC43Nmw2MS43Ny02OGwtNjIuNi05OC4zMkE4IDggMCAwIDEgNDggMzJoNDhhOCA4IDAgMCAxIDYuNzUgMy43MWw0MC40OSA2My42M2w1OC44NC02NC43MmE4IDggMCAwIDEgMTEuODQgMTAuNzZsLTYxLjc3IDY3Ljk1bDYyLjYgOTguMzhhOCA4IDAgMCAxIC4yNSA4LjE0Ii8+PC9zdmc+" alt="">
+                    </div>
+                </div>
+
+                {% if share.text != '' %}
+                <div class="middle">
+                    <div class="text">
+                        <p>{{share.text}}</p>
+                    </div>
+                </div>
+                {% endif %}
+
+
+                {% if share.media != '' %}
+                <div class="bottom">
+                    <div class="media">
+                        <img src="/media/{{share.media}}/" alt="">
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            </a>
+            {% elif share.platform == 'Tiktok' %}
+            <a href="{{share.link}}" target="_blank">
+            <div class="post tiktokPost">
+                <div class="top">
+                    <div class="right">
+                        <div class="avatar">
+                            <img src="/media/{{share.brand.logo}}/" alt="">
+                        </div>
+                        <div class="info">
+                            <h3>{{share.brand.name}}</h3>
+                            <p>{{share.platform}}</p>
+                        </div>
+                    </div>
+                    <div class="left">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik0xMi41MjUuMDJjMS4zMS0uMDIgMi42MS0uMDEgMy45MS0uMDJjLjA4IDEuNTMuNjMgMy4wOSAxLjc1IDQuMTdjMS4xMiAxLjExIDIuNyAxLjYyIDQuMjQgMS43OXY0LjAzYy0xLjQ0LS4wNS0yLjg5LS4zNS00LjItLjk3Yy0uNTctLjI2LTEuMS0uNTktMS42Mi0uOTNjLS4wMSAyLjkyLjAxIDUuODQtLjAyIDguNzVjLS4wOCAxLjQtLjU0IDIuNzktMS4zNSAzLjk0Yy0xLjMxIDEuOTItMy41OCAzLjE3LTUuOTEgMy4yMWMtMS40My4wOC0yLjg2LS4zMS00LjA4LTEuMDNjLTIuMDItMS4xOS0zLjQ0LTMuMzctMy42NS01LjcxYy0uMDItLjUtLjAzLTEtLjAxLTEuNDljLjE4LTEuOSAxLjEyLTMuNzIgMi41OC00Ljk2YzEuNjYtMS40NCAzLjk4LTIuMTMgNi4xNS0xLjcyYy4wMiAxLjQ4LS4wNCAyLjk2LS4wNCA0LjQ0Yy0uOTktLjMyLTIuMTUtLjIzLTMuMDIuMzdjLS42My40MS0xLjExIDEuMDQtMS4zNiAxLjc1Yy0uMjEuNTEtLjE1IDEuMDctLjE0IDEuNjFjLjI0IDEuNjQgMS44MiAzLjAyIDMuNSAyLjg3YzEuMTItLjAxIDIuMTktLjY2IDIuNzctMS42MWMuMTktLjMzLjQtLjY3LjQxLTEuMDZjLjEtMS43OS4wNi0zLjU3LjA3LTUuMzZjLjAxLTQuMDMtLjAxLTguMDUuMDItMTIuMDciLz48L3N2Zz4=" alt="">
+                    </div>
+                </div>
+
+                {% if share.text != '' %}
+                <div class="middle">
+                    <div class="text">
+                        <p>{{share.text}}</p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if share.media != '' %}
+                <div class="bottom">
+                    <div class="media">
+                        <img src="/media/{{share.media}}/" alt="">
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            </a>
+            {% endif %}
+
+
             {% endfor %}
         </div>
-        <a onclick="openLoader()"  hx-push-url="true" hx-swap="outerHTML show:#body-div:top" hx-get="{% url 'shares' %}" class="loadMore">عرض الكل</a>
+        <a onclick="openLoader()"  hx-push-url="true" href="{% url 'shares' %}" class="loadMore">عرض الكل</a>
     </div>
 
 
 
+    
+    <!-- Section7 -->
+    <div class="section7">
+        <a onclick="openLoader()" hx-push-url="true" href="#" class="title">
+            <h1 class="title">أماكن التبرع</h1>
+        </a>
+        <div class="Lcontainer">
+            <div class="locations">
+                <ul id="locationsList">
+                    <li onclick="updateMap('location1', this)">الموقع الأول</li>
+                    <li onclick="updateMap('location2', this)">الموقع الثاني</li>
+                    <li onclick="updateMap('location3', this)">الموقع الثالث</li>
+                </ul>
+            </div>
+            <div class="map-container">
+                <iframe
+                id="mapIframe"
+                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1685.0662595214656!2d15.075675032364432!3d32.36199040484594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13a14d004425eef9%3A0x69ae613eda8be5b7!2sTafkeer%20Consutling%20and%20Training!5e0!3m2!1sen!2sly!4v1733163597490!5m2!1sen!2sly"
+                 style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Section4 -->
     <div class="section4">
-        <a onclick="openLoader()"  hx-push-url="true" hx-swap="outerHTML show:#body-div:top" hx-get="{% url 'boycotting' %}" class="title">
-            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0zIDIxaDJtMTYgMGgtMk01IDIxaDE0TTUgMjFWOS4zMjhNMTkgMjFWOS4zMjhtLTE0IDBhMiAyIDAgMCAxLS4xMS0uMDY4bC0uNTQtLjM2YTIgMiAwIDAgMS0uNzQ3LTIuNDA3bC44OTQtMi4yMzZBMiAyIDAgMCAxIDYuMzU0IDNoMTEuMjkyYTIgMiAwIDAgMSAxLjg1NyAxLjI1N2wuODk0IDIuMjM2QTIgMiAwIDAgMSAxOS42NSA4LjlsLS41NC4zNmEyIDIgMCAwIDEtLjExLjA2OG0tMTQgMGEyIDIgMCAwIDAgMi4xMS0uMDY4TDkgOGwxLjg5IDEuMjZhMiAyIDAgMCAwIDIuMjIgMEwxNSA4bDEuODkgMS4yNmEyIDIgMCAwIDAgMi4xMS4wNjgiLz48cGF0aCBkPSJNMTQgMjF2LTVhMiAyIDAgMSAwLTQgMHY1Ii8+PC9nPjwvc3ZnPg=="  alt="">
+        <a onclick="openLoader()"  hx-push-url="true" href="{% url 'boycotting' %}" class="title">
             <h1 class="title">المنتجات المقاطَعة</h1>
         </a>
 
         <a class="arrow left" onclick="scrollItems('section4', 'left')">
-            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ViYWYzOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjIiIGQ9Im0xNCA3bC01IDVsNSA1Ii8+PC9zdmc+" alt="">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwQTM2QyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0ibTE1IDZsLTYgNmw2IDYiLz48L3N2Zz4=" alt="">
         </a>
 
         <div class="items">
-            {% for company in companies %}
-                {% if company.kind == 'Boycotted' %}
-                <a href="{{company.link}}" target="_blank">
+            {% for product in products %}
+                {% if product.kind == 'Boycotted' %}
+                <a onclick="openLoader()"  hx-push-url="true" href="{% url 'product' product.id %}">
                     <div class="item">
-                        <img src="/media/{{company.logo}}/" alt="">
+                        <img src="/media/{{product.image}}/" alt="">
                     </div>
                 </a>
                 {% endif %}
@@ -963,28 +303,27 @@
         </div>
         
         <a class="arrow right" onclick="scrollItems('section4', 'right')">
-            <img style="transform: rotate(180deg);" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ViYWYzOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjIiIGQ9Im0xNCA3bC01IDVsNSA1Ii8+PC9zdmc+" alt="">
+            <img style="transform: rotate(180deg);" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwQTM2QyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0ibTE1IDZsLTYgNmw2IDYiLz48L3N2Zz4=" alt="">
         </a>
     </div>
 
 
     <!-- Section5 -->
     <div class="section5">
-        <a onclick="openLoader()"  hx-push-url="true" hx-swap="outerHTML show:#body-div:top" hx-get="{% url 'alternatives' %}" class="title">
-            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0zIDIxaDJtMTYgMGgtMk01IDIxaDE0TTUgMjFWOS4zMjhNMTkgMjFWOS4zMjhtLTE0IDBhMiAyIDAgMCAxLS4xMS0uMDY4bC0uNTQtLjM2YTIgMiAwIDAgMS0uNzQ3LTIuNDA3bC44OTQtMi4yMzZBMiAyIDAgMCAxIDYuMzU0IDNoMTEuMjkyYTIgMiAwIDAgMSAxLjg1NyAxLjI1N2wuODk0IDIuMjM2QTIgMiAwIDAgMSAxOS42NSA4LjlsLS41NC4zNmEyIDIgMCAwIDEtLjExLjA2OG0tMTQgMGEyIDIgMCAwIDAgMi4xMS0uMDY4TDkgOGwxLjg5IDEuMjZhMiAyIDAgMCAwIDIuMjIgMEwxNSA4bDEuODkgMS4yNmEyIDIgMCAwIDAgMi4xMS4wNjgiLz48cGF0aCBkPSJNMTQgMjF2LTVhMiAyIDAgMSAwLTQgMHY1Ii8+PC9nPjwvc3ZnPg=="  alt="">
+        <a onclick="openLoader()"  hx-push-url="true" href="{% url 'alternatives' %}" class="title">
             <h1 class="title">البدائل</h1>
         </a>
 
         <a class="arrow left" onclick="scrollItems('section5', 'left')">
-            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ViYWYzOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjIiIGQ9Im0xNCA3bC01IDVsNSA1Ii8+PC9zdmc+" alt="">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwQTM2QyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0ibTE1IDZsLTYgNmw2IDYiLz48L3N2Zz4=" alt="">
         </a>
 
         <div class="items">
-            {% for company in companies %}
-                {% if company.kind == 'Alternative' %}
-                <a href="{{company.link}}" target="_blank">
+            {% for product in products %}
+                {% if product.kind == 'Alternative' %}
+                <a onclick="openLoader()"  hx-push-url="true" href="{% url 'product' product.id %}">
                     <div class="item">
-                        <img src="/media/{{company.logo}}/" alt="">
+                        <img src="/media/{{product.image}}/" alt="">
                     </div>
                 </a>
                 {% endif %}
@@ -992,7 +331,7 @@
         </div>
         
         <a class="arrow right" onclick="scrollItems('section5', 'right')">
-            <img style="transform: rotate(180deg);" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ViYWYzOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjIiIGQ9Im0xNCA3bC01IDVsNSA1Ii8+PC9zdmc+" alt="">
+            <img style="transform: rotate(180deg);" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwQTM2QyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0ibTE1IDZsLTYgNmw2IDYiLz48L3N2Zz4=" alt="">
         </a>
     </div>
     
@@ -1000,14 +339,13 @@
 
     <!-- Section #6 -->
     <div class="section6">
-        <a onclick="openLoader()"  hx-push-url="true" hx-swap="outerHTML show:#body-div:top" hx-get="" class="title">
-            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjIiIGQ9Im01IDE2bC0xIDRsNC0xTDE5LjU4NiA3LjQxNGEyIDIgMCAwIDAgMC0yLjgyOGwtLjE3Mi0uMTcyYTIgMiAwIDAgMC0yLjgyOCAwek0xNSA2bDMgM20tNSAxMWg4Ii8+PC9zdmc+"  alt="">
+        <a onclick="openLoader()"  hx-push-url="true" href="" class="title">
             <h1 class="title">تساؤلات حول المقاطعة</h1>
         </a>
 
         <div class="sides">
             <div class="right">
-                <div class="articles">
+                <div class="faqs">
                     {% for question in questions|slice:"0:5" %}
                         <article class="accordion">
                         <input type="checkbox" class="tgg-title" id="{{question.id}}">
@@ -1015,7 +353,7 @@
                             <label for="{{question.id}}">
                             <h2>{{question.question}}</h2>
                             <span class="arrow-icon">
-                                <img style="transform: rotate(270deg);" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ViYWYzOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjIiIGQ9Im0xNCA3bC01IDVsNSA1Ii8+PC9zdmc+">
+                                <img style="transform: rotate(270deg);" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwQTM2QyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0ibTE1IDZsLTYgNmw2IDYiLz48L3N2Zz4=">
                             </span>
                             </label>
                         </div>
@@ -1024,11 +362,11 @@
                         </div>
                         </article> 
                     {% endfor %}
-                </div> <!-- faq articles -->
+                </div> <!-- faq faqs -->
             </div>
     
             <div class="left">
-                <div class="articles">
+                <div class="faqs">
                     {% for question in questions|slice:"5:10" %}
                         <article class="accordion">
                         <input type="checkbox" class="tgg-title" id="{{question.id}}">
@@ -1036,7 +374,7 @@
                             <label for="{{question.id}}">
                             <h2>{{question.question}}</h2>
                             <span class="arrow-icon">
-                                <img style="transform: rotate(270deg);" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ViYWYzOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjIiIGQ9Im0xNCA3bC01IDVsNSA1Ii8+PC9zdmc+">
+                                <img style="transform: rotate(270deg);" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwQTM2QyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0ibTE1IDZsLTYgNmw2IDYiLz48L3N2Zz4=">
                             </span>
                             </label>
                         </div>
@@ -1058,6 +396,33 @@
 </div>
 
 
+
+<script>
+    const locationMaps = {
+        location1: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1685.0662595214656!2d15.075675032364432!3d32.36199040484594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13a14d004425eef9%3A0x69ae613eda8be5b7!2sTafkeer%20Consutling%20and%20Training!5e0!3m2!1sen!2sly!4v1733163597490!5m2!1sen!2sly",
+        location2: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d210.60108093430068!2d15.081537690915159!3d32.375810560184014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13a14dcd230b0491%3A0xbcf719ece69f1830!2z2LTYsdmD2Kkg2KfZhNio2K_ZitmEINmB2LHYuSDZhdi12LHYp9iq2Kk!5e0!3m2!1sen!2sly!4v1733163727799!5m2!1sen!2sly",
+        location3: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.7360452100147!2d15.108408104841509!3d32.38360397589241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13a14c33574ab067%3A0x76716ac9ff5bc24!2sMartyrs%20School%20Leader!5e0!3m2!1sen!2sly!4v1733163789473!5m2!1sen!2sly"
+    };
+
+    // Function to update the map and highlight the active location
+    function updateMap(locationKey, element) {
+        const iframe = document.getElementById("mapIframe");
+        iframe.src = locationMaps[locationKey];
+
+        // Remove active class from all list items
+        const listItems = document.querySelectorAll('#locationsList li');
+        listItems.forEach(item => item.classList.remove('active'));
+
+        // Add active class to the clicked item
+        element.classList.add('active');
+    }
+
+    // Initialize the first location as active on page load
+    document.addEventListener("DOMContentLoaded", () => {
+        const firstLocation = document.querySelector('#locationsList li');
+        firstLocation.classList.add('active');
+    });
+</script>
 
 
 
@@ -1131,14 +496,16 @@
             let timeText = elem.textContent;
         
             // Replace the time units with their shorter forms
-            timeText = timeText.replace('minutes', 'دقيقة');
-            timeText = timeText.replace('minute', 'دقيقة'); // For singular
-            timeText = timeText.replace('hours', 'ساعة');
-            timeText = timeText.replace('hour', 'ساعة'); // For singular
-            timeText = timeText.replace('days', 'يوم');
-            timeText = timeText.replace('day', 'يوم'); // For singular
-            timeText = timeText.replace('weeks', 'أسبوع');
-            timeText = timeText.replace('week', 'أسبوع'); // For singular
+            timeText = timeText.replace('minutes', 'د');
+            timeText = timeText.replace('minute', 'د'); // For singular
+            timeText = timeText.replace('hours', 'س');
+            timeText = timeText.replace('hour', 'س'); // For singular
+            timeText = timeText.replace('days', 'ي');
+            timeText = timeText.replace('day', 'ي'); // For singular
+            timeText = timeText.replace('weeks', 'أ');
+            timeText = timeText.replace('week', 'أ'); // For singular
+            timeText = timeText.replace('months', 'ش');
+            timeText = timeText.replace('month', 'ش'); // For singular
             // Only keep the first time unit (minutes, hours, days)
             let firstUnit = timeText.split(',')[0].trim(); // Handle cases with multiple time units
         

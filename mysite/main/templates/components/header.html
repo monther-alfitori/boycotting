@@ -1,96 +1,24 @@
 {% load static %}
 <style>
-    .headerBlock {
-        width: 65vw;
-        margin: auto;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 2fr 1fr 1fr 1fr;
-        gap: 0;
-        align-items: center;
-        height: 90px;
-        border-bottom: 0.2px solid #333333;
-        padding: 5px 0;
-        z-index: 45;
-        background-color: #00000068;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        transition: background-color 0.3s ease, border-bottom 0.3s ease; 
-    }
-    .headerBlock .logo {
-        text-align: center;
-    }
-    .headerBlock .logo img {
-        height: 80px;
-    }
-    .headerBlock .menuItem {
-        text-align: center;
-    }
-    .headerBlock .menuItem img {
-        width: 35px;
-        transition: ease-in-out 0.3s all;
-        filter: opacity(75%);
-    }
-    .headerBlock .menuItem img:hover {
-        border-radius: 50%;
-        padding: 5px;
-        background-color: #ffffff36;
-        filter: opacity(100%);
-    }
 
-
-    @media screen and (min-width: 1400px){
-    .headerBlock {
-        width: 1000px;
-    }
-}
-
-@media screen and (max-width: 1400px){
-    .headerBlock {
-        width: 75vw;
-    }
-}
-
-@media screen and (max-width: 1100px){
-    .headerBlock {
-        width: 90vw;
-    }
-}
-
-@media screen and (max-width: 1000px){
-    .headerBlock {
-        width: 95vw;
-    }
-
-}
-
-@media screen and (max-width: 900px){
-    .headerBlock {
-        width: 100vw;
-        height: 70px;
-    }
-    .headerBlock .logo img {
-        height: 60px;
-    }
-    .headerBlock .menuItem img {
-        width: 25px;
-        filter: opacity(60%);
-    }
-}
 </style>
 
 
 
     <div class="headerBlock">
-        <a onclick="openLoader()" hx-push-url="true" hx-get="{% url 'articles' %}"><div class="menuItem"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIGQ9Ik0zIDR2MTRhMiAyIDAgMCAwIDIgMmgxNGEyIDIgMCAwIDAgMi0yVjhoLTQiLz48cGF0aCBkPSJNMyA0aDE0djE0YTIgMiAwIDAgMCAyIDJ2ME0xMyA4SDdtNiA0SDkiLz48L2c+PC9zdmc+" alt=""></div></a>
-        <a onclick="openLoader()" hx-push-url="true" hx-get="{% url 'boycotters' %}"><div class="menuItem"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0zIDIxaDJtMTYgMGgtMk01IDIxaDE0TTUgMjFWOS4zMjhNMTkgMjFWOS4zMjhtLTE0IDBhMiAyIDAgMCAxLS4xMS0uMDY4bC0uNTQtLjM2YTIgMiAwIDAgMS0uNzQ3LTIuNDA3bC44OTQtMi4yMzZBMiAyIDAgMCAxIDYuMzU0IDNoMTEuMjkyYTIgMiAwIDAgMSAxLjg1NyAxLjI1N2wuODk0IDIuMjM2QTIgMiAwIDAgMSAxOS42NSA4LjlsLS41NC4zNmEyIDIgMCAwIDEtLjExLjA2OG0tMTQgMGEyIDIgMCAwIDAgMi4xMS0uMDY4TDkgOGwxLjg5IDEuMjZhMiAyIDAgMCAwIDIuMjIgMEwxNSA4bDEuODkgMS4yNmEyIDIgMCAwIDAgMi4xMS4wNjgiLz48cGF0aCBkPSJNMTQgMjF2LTVhMiAyIDAgMSAwLTQgMHY1Ii8+PC9nPjwvc3ZnPg==" alt=""></div></a>
-        <a onclick="openLoader()" hx-push-url="true" hx-get="{% url 'shares' %}"><div class="menuItem"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Im0xNSAxMGwtLjk4Ni0uMTY0QTEgMSAwIDAgMCAxNSAxMXpNNCAxMFY5YTEgMSAwIDAgMC0xIDF6bTE2LjUyMiAyLjM5MmwuOTguMTk2ek02IDIxaDExLjM2di0ySDZ6TTE4LjU2IDlIMTV2MmgzLjU2em0tMi41NzMgMS4xNjRsLjgwNS00LjgzNUwxNC44MiA1bC0uODA2IDQuODM2ek0xNC44MiAzaC0uMjE0djJoLjIxNHptLTMuNTQzIDEuNzgxTDguNzYzIDguNTU1bDEuNjY0IDEuMTFsMi41MTYtMy43NzR6TTcuOTMgOUg0djJoMy45M3pNMyAxMHY4aDJ2LTh6bTE3LjMwMiA4LjU4OGwxLjItNmwtMS45Ni0uMzkybC0xLjIgNnpNOC43NjIgOC41NTVBMSAxIDAgMCAxIDcuOTMgOXYyYTMgMyAwIDAgMCAyLjQ5Ni0xLjMzNnptOC4wMy0zLjIyNkEyIDIgMCAwIDAgMTQuODIgM3Yyek0xOC41NiAxMWExIDEgMCAwIDEgLjk4MSAxLjE5NmwxLjk2MS4zOTJBMyAzIDAgMCAwIDE4LjU2MSA5em0tMS4yIDEwYTMgMyAwIDAgMCAyLjk0Mi0yLjQxMmwtMS45Ni0uMzkyYTEgMSAwIDAgMS0uOTgyLjgwNHpNMTQuNjA2IDNhNCA0IDAgMCAwLTMuMzI4IDEuNzgxbDEuNjY0IDEuMTFBMiAyIDAgMCAxIDE0LjYwNiA1ek02IDE5YTEgMSAwIDAgMS0xLTFIM2EzIDMgMCAwIDAgMyAzeiIvPjxwYXRoIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNOCAxMHYxMCIvPjwvZz48L3N2Zz4=" alt=""></div></a>
-        <a onclick="openLoader()" hx-push-url="true" hx-get="{% url 'home' %}"><div class="logo"><img src="{% static 'images/lightLogo.png' %}" alt=""></div></a>
-        <a onclick="openLoader()" hx-push-url="true" hx-get="{% url 'boycotting' %}"><div class="menuItem"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xMSAyMmgyIi8+PGNpcmNsZSBjeD0iMTIiIGN5PSIzIiByPSIxIi8+PHBhdGggc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNNiAxOXYtOWMwLTEuMTQ0LjMyLTIuMjE0Ljg3Ni0zLjEyNE02IDE5aDEyTTYgMTlING0xNCAwdi0xbTAgMWgxTTkuOTk5IDQuMzQyQTYgNiAwIDAgMSAxOCAxMHYyLjM0MyIvPjxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZD0ibTQgNGwxNiAxNiIvPjwvZz48L3N2Zz4=" alt=""></div></a>
-        <a onclick="openLoader()" hx-push-url="true" hx-get="{% url 'alternatives' %}"><div class="menuItem"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjU2IDI1NiI+PHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iTTIyOCA0OHYxNjBhMjAgMjAgMCAwIDEtMjAgMjBoLTY4YTEyIDEyIDAgMCAxIDAtMjRoNjRWNTJINTJ2ODhhMTIgMTIgMCAwIDEtMjQgMFY0OGEyMCAyMCAwIDAgMSAyMC0yMGgxNjBhMjAgMjAgMCAwIDEgMjAgMjBtLTk5LjUxIDEwMy41MWExMiAxMiAwIDAgMC0xNyAwTDY0IDE5OWwtMTUuNTEtMTUuNDlhMTIgMTIgMCAxIDAtMTcgMTdsMjQgMjRhMTIgMTIgMCAwIDAgMTcgMGw1Ni01NmExMiAxMiAwIDAgMCAwLTE3Ii8+PC9zdmc+" alt=""></div></a>
-        <a onclick="openLoader()" hx-push-url="true" hx-get="{% url 'phrases' %}"><div class="menuItem"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0zIDNWMmExIDEgMCAwIDAtMSAxem0xNS4yOTMgMTEuMjkzbC0uOTExLS40MTJBMSAxIDAgMCAwIDE3LjU4NiAxNXpNMjEgMTdsLjcwNy43MDdhMSAxIDAgMCAwIDAtMS40MTR6bS00IDRsLS43MDcuNzA3YTEgMSAwIDAgMCAxLjQxNCAwem0tMi43MDctMi43MDdsLjcwNy0uNzA3YTEgMSAwIDAgMC0xLjEyLS4yMDR6TTExIDJIM3YyaDh6bTkgOWE5IDkgMCAwIDAtOS05djJhNyA3IDAgMCAxIDcgN3ptLS43OTYgMy43MDVBOSA5IDAgMCAwIDIwIDExaC0yYTcgNyAwIDAgMS0uNjE4IDIuODh6TTE3LjU4NiAxNWwyLjcwNyAyLjcwN2wxLjQxNC0xLjQxNEwxOSAxMy41ODZ6bTIuNzA3IDEuMjkzbC00IDRsMS40MTQgMS40MTRsNC00em0tMi41ODYgNEwxNSAxNy41ODZMMTMuNTg2IDE5bDIuNzA3IDIuNzA3ek0xMSAyMGE5IDkgMCAwIDAgMy43MDUtLjc5NmwtLjgyNC0xLjgyMkE3IDcgMCAwIDEgMTEgMTh6bS05LTlhOSA5IDAgMCAwIDkgOXYtMmE3IDcgMCAwIDEtNy03em0wLTh2OGgyVjN6Ii8+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iMiIgZmlsbD0iI2ZmZmZmZiIgdHJhbnNmb3JtPSJyb3RhdGUoLTE4MCAxMSAxMSkiLz48cGF0aCBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJtMyAzbDggOCIvPjwvZz48L3N2Zz4=" alt=""></div></a>
-
+        <a onclick="openLoader()" hx-push-url="true" href="{% url 'home' %}"><div class="logo"><img src="{% static 'images/BadeelLogo.png' %}" alt=""></div></a>
+        <a onclick="openLoader()" hx-push-url="true" href="{% url 'boycotters' %}">
+            <div class="menuItem">
+                <h4>المقاطعين</h4>
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0zIDIxaDJtMTYgMGgtMk01IDIxaDE0TTUgMjFWOS4zMjhNMTkgMjFWOS4zMjhtLTE0IDBhMiAyIDAgMCAxLS4xMS0uMDY4bC0uNTQtLjM2YTIgMiAwIDAgMS0uNzQ3LTIuNDA3bC44OTQtMi4yMzZBMiAyIDAgMCAxIDYuMzU0IDNoMTEuMjkyYTIgMiAwIDAgMSAxLjg1NyAxLjI1N2wuODk0IDIuMjM2QTIgMiAwIDAgMSAxOS42NSA4LjlsLS41NC4zNmEyIDIgMCAwIDEtLjExLjA2OG0tMTQgMGEyIDIgMCAwIDAgMi4xMS0uMDY4TDkgOGwxLjg5IDEuMjZhMiAyIDAgMCAwIDIuMjIgMEwxNSA4bDEuODkgMS4yNmEyIDIgMCAwIDAgMi4xMS4wNjgiLz48cGF0aCBkPSJNMTQgMjF2LTVhMiAyIDAgMSAwLTQgMHY1Ii8+PC9nPjwvc3ZnPg==" alt="">
+            </div>
+        </a>
+        <a onclick="openLoader()" hx-push-url="true" href="{% url 'articles' %}">
+            <div class="menuItem">
+                <h4>المقالات</h4>
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIGQ9Ik0zIDR2MTRhMiAyIDAgMCAwIDIgMmgxNGEyIDIgMCAwIDAgMi0yVjhoLTQiLz48cGF0aCBkPSJNMyA0aDE0djE0YTIgMiAwIDAgMCAyIDJ2ME0xMyA4SDdtNiA0SDkiLz48L2c+PC9zdmc+" alt="">
+            </div>
+        </a>
     </div>
 
 
@@ -100,11 +28,9 @@ function handleScrollChange() {
 
     // Check if the scroll position is greater than or equal to 100px
     if (window.scrollY >= 100) {
-        header.style.backgroundColor = '#000'; // Change background to solid black
-        header.style.borderBottom = 'none';    // Remove the bottom border
+        header.style.backgroundColor = '#f7f7f7'; // Change background to solid black
     } else {
-        header.style.backgroundColor = '#00000068'; // Semi-transparent black
-        header.style.borderBottom = '0.2px solid #333333'; // Restore the bottom border
+        header.style.backgroundColor = '#f1f1f100'; // Semi-transparent black
     }
 }
 

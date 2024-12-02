@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boycotting For Gaza</title>
+    <script src="https://unpkg.com/htmx.org"></script>
+</head>
+<style>
+
+
+</style>
+<body hx-target="this" hx-swap="outerHTML">
+<div id="forplaceholder">
+    {% include 'components/loader.html' %}
+    {% include 'components/header.html' %}
+
+    
+    <div class="article">
+        <a onclick="openLoader()"  hx-push-url="true" href="" class="title">
+            <p class="created_at">{{article.created_at|date:"Y/m/d"}}</p>
+            <h1 class="title">{{article.title}}</h1>
+        </a>
+        <div class="item">
+            <p class="content">{{article.content|linebreaksbr}}</p>
+            <p class="source"><span style="color: #000000a3">بقلم</span> {{article.source}}</p>
+        </div>
+
+    </div>
+
+    {% include 'components/footer.html' %}
+</div>
+
+
+
+
+    <script>
+        // Define the function that processes the 'created_at' elements
+        function updateTimeElements() {
+        // Select all elements with the class 'created_at'
+        const timeElements = document.querySelectorAll('.created_at');
+        
+        timeElements.forEach(function(elem) {
+            // Get the current text content
+            let timeText = elem.textContent;
+        
+            // Replace the time units with their shorter forms
+            timeText = timeText.replace('minutes', 'د');
+            timeText = timeText.replace('minute', 'د'); // For singular
+            timeText = timeText.replace('hours', 'س');
+            timeText = timeText.replace('hour', 'س'); // For singular
+            timeText = timeText.replace('days', 'ي');
+            timeText = timeText.replace('day', 'ي'); // For singular
+            timeText = timeText.replace('weeks', 'أ');
+            timeText = timeText.replace('week', 'أ'); // For singular
+            timeText = timeText.replace('months', 'ش');
+            timeText = timeText.replace('month', 'ش'); // For singular
+            // Only keep the first time unit (minutes, hours, days)
+            let firstUnit = timeText.split(',')[0].trim(); // Handle cases with multiple time units
+        
+            // Update the text content with the new shortened version
+            elem.textContent = firstUnit;
+        });
+        }
+    
+        // Call the function when the DOM content is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+        updateTimeElements();
+        });
+    
+        // Call the function after any HTMX request that affects the page
+        document.body.addEventListener('htmx:afterOnLoad', function() {
+        updateTimeElements();
+        });
+  </script>
+
+</body>
+</html>
+{% endblock content %}

@@ -1,13 +1,15 @@
 from django.shortcuts import render
 from .models import *
+from django.db.models import Q
+import random
 
 
 def home(request):
     articles = Article.objects.all()
     phrases = Phrase.objects.all().order_by('?')
     brands = Brand.objects.all().order_by('?')
-    shares = Share.objects.all()
-    companies = Company.objects.all().order_by('?')
+    shares = Share.objects.all().order_by('?')
+    products = Product.objects.all().order_by('?')
     questions = Question.objects.all()
 
 
@@ -16,7 +18,7 @@ def home(request):
         'phrases': phrases, 
         'brands': brands, 
         'shares': shares, 
-        'companies': companies,
+        'products': products,
         'questions': questions,
     }
     return render(request, 'home.html', context)
@@ -29,6 +31,14 @@ def articles(request):
         'articles': articles,
     }
     return render(request, 'articles.html', context)
+
+
+def article(request, pk):
+    article = Article.objects.get(id=pk)
+    context = {
+        'article': article,
+    }
+    return render(request, 'article.html', context)
 
 
 def phrases(request):
@@ -47,7 +57,7 @@ def shares(request):
 
 
 def boycotting(request):
-    boycotting = Company.objects.filter(kind="Boycotted")
+    boycotting = Product.objects.filter(kind="Boycotted")
     context = {
         'boycotting': boycotting,
     }
@@ -55,11 +65,24 @@ def boycotting(request):
 
 
 def alternatives(request):
-    alternatives = Company.objects.filter(kind="Alternative")
+    alternatives = Product.objects.filter(kind="Alternative")
     context = {
         'alternatives': alternatives,
     }
     return render(request, 'alternatives.html', context)
+
+
+def product(request, pk):
+    product = Product.objects.get(id=pk)
+    # Fetch products of the same kind and exclude the current product
+    related_products = Product.objects.filter(kind=product.kind).exclude(id=product.id)
+    # Randomly select up to 8 products
+    related_products = random.sample(list(related_products), min(10, related_products.count()))
+    context = {
+        'product': product,
+        'related_products': related_products,
+    }
+    return render(request, 'product.html', context)
 
     
 def boycotters(request):

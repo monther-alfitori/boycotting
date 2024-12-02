@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boycotting For Gaza</title>
+    <script src="https://unpkg.com/htmx.org"></script>
+</head>
+<style>
+
+</style>
+<body hx-target="this" hx-swap="outerHTML">
+<div id="forplaceholder">
+    {% include 'components/loader.html' %}
+    {% include 'components/header.html' %}
+
+    
+    <div class="product">
+        <div class="item">
+            <img src="/media/{{product.image}}/" alt="">
+        </div>
+        <a onclick="openLoader()"  hx-push-url="true" href="" class="title">
+            <h1 class="title">{{product.name}}</h1>
+            <p>{{product.text}}</p>
+        </a>
+    </div>
+
+
+    <div class="alternatives" id="productRelates">
+        <div class="items">
+            {% for related_product in related_products %}
+                <a onclick="openLoader()" hx-push-url="true" href="{% url 'product' related_product.id %}">
+                    <div class="item">
+                        <img src="/media/{{ related_product.image }}/" alt="">
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    
+
+
+    
+    {% include 'components/footer.html' %}
+</div>
+
+</body>
+</html>
+{% endblock content %}

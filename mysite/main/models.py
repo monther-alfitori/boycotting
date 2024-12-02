@@ -65,6 +65,8 @@ class Share(models.Model):
     link = models.CharField(max_length=10000)
     platform = models.CharField(max_length=12, choices=SOCIAL_CHOICES, default="Facebook")
     created_at = models.DateTimeField(auto_now_add=True)
+    text = models.TextField(blank=True, null=True)
+    media = models.FileField(upload_to='files/%y/%m/%d', null=True, blank=True)
 
     def __str__(self):
         return self.platform
@@ -74,17 +76,18 @@ class Share(models.Model):
 
 
 
-class Company(models.Model):
+class Product(models.Model):
     TYPE_CHOICES = (
         ("Boycotted", "Boycotted"),
         ("Alternative", "Alternative"),
     )
-    logo = models.ImageField(upload_to='images/%y/%m/%d')
-    link = models.URLField()
+    image = models.ImageField(upload_to='images/%y/%m/%d', max_length=1000)
+    name = models.CharField(max_length=600)
     kind = models.CharField(max_length=12, choices=TYPE_CHOICES, default="Alternative")
+    text = models.TextField(null=True)
 
     def __str__(self):
-        return self.kind + '-' + str(self.id)
+        return self.name + '-' + self.kind
 
 
 class Question(models.Model):
